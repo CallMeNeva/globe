@@ -71,101 +71,129 @@ public class Country {
     public Country() {
     }
 
-    public Country(String name,
-                   String localName,
-                   String alpha3Code,
-                   String alpha2Code,
-                   City capital,
-                   Continent continent,
-                   String regionName,
-                   BigDecimal surfaceArea,
-                   String governmentFormName,
-                   String headOfStateName,
-                   Year independenceYear,
-                   int populationCount,
-                   Float lifeExpectancy,
-                   BigDecimal grossNationalProduct,
-                   BigDecimal oldGrossNationalProduct) {
-        this.name = name;
-        this.localName = localName;
-        this.alpha3Code = alpha3Code;
-        this.alpha2Code = alpha2Code;
-        this.capital = capital;
-        this.continent = continent;
-        this.regionName = regionName;
-        this.surfaceArea = surfaceArea;
-        this.governmentFormName = governmentFormName;
-        this.headOfStateName = headOfStateName;
-        this.independenceYear = independenceYear;
-        this.populationCount = populationCount;
-        this.lifeExpectancy = lifeExpectancy;
-        this.grossNationalProduct = grossNationalProduct;
-        this.oldGrossNationalProduct = oldGrossNationalProduct;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocalName() {
         return localName;
     }
 
+    public void setLocalName(String localName) {
+        this.localName = localName;
+    }
+
     public String getAlpha3Code() {
         return alpha3Code;
+    }
+
+    public void setAlpha3Code(String alpha3Code) {
+        this.alpha3Code = alpha3Code;
     }
 
     public String getAlpha2Code() {
         return alpha2Code;
     }
 
+    public void setAlpha2Code(String alpha2Code) {
+        this.alpha2Code = alpha2Code;
+    }
+
     public City getCapital() {
         return capital;
+    }
+
+    public void setCapital(City capital) {
+        this.capital = capital;
     }
 
     public Continent getContinent() {
         return continent;
     }
 
+    public void setContinent(Continent continent) {
+        this.continent = continent;
+    }
+
     public String getRegionName() {
         return regionName;
+    }
+
+    public void setRegionName(String regionName) {
+        this.regionName = regionName;
     }
 
     public BigDecimal getSurfaceArea() {
         return surfaceArea;
     }
 
+    public void setSurfaceArea(BigDecimal surfaceArea) {
+        this.surfaceArea = surfaceArea;
+    }
+
     public String getGovernmentFormName() {
         return governmentFormName;
+    }
+
+    public void setGovernmentFormName(String governmentFormName) {
+        this.governmentFormName = governmentFormName;
     }
 
     public String getHeadOfStateName() {
         return headOfStateName;
     }
 
+    public void setHeadOfStateName(String headOfStateName) {
+        this.headOfStateName = headOfStateName;
+    }
+
     public Year getIndependenceYear() {
         return independenceYear;
+    }
+
+    public void setIndependenceYear(Year independenceYear) {
+        this.independenceYear = independenceYear;
     }
 
     public int getPopulationCount() {
         return populationCount;
     }
 
+    public void setPopulationCount(int populationCount) {
+        this.populationCount = populationCount;
+    }
+
     public Float getLifeExpectancy() {
         return lifeExpectancy;
+    }
+
+    public void setLifeExpectancy(Float lifeExpectancy) {
+        this.lifeExpectancy = lifeExpectancy;
     }
 
     public BigDecimal getGrossNationalProduct() {
         return grossNationalProduct;
     }
 
+    public void setGrossNationalProduct(BigDecimal grossNationalProduct) {
+        this.grossNationalProduct = grossNationalProduct;
+    }
+
     public BigDecimal getOldGrossNationalProduct() {
         return oldGrossNationalProduct;
     }
 
+    public void setOldGrossNationalProduct(BigDecimal oldGrossNationalProduct) {
+        this.oldGrossNationalProduct = oldGrossNationalProduct;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof Country otherCountry
+        return (this == obj) || (obj instanceof Country otherCountry
                 && Objects.equals(name, otherCountry.name)
                 && Objects.equals(localName, otherCountry.localName)
                 && Objects.equals(alpha3Code, otherCountry.alpha3Code)
@@ -180,7 +208,7 @@ public class Country {
                 && Objects.equals(populationCount, otherCountry.populationCount)
                 && Objects.equals(lifeExpectancy, otherCountry.lifeExpectancy)
                 && Objects.equals(grossNationalProduct, otherCountry.grossNationalProduct)
-                && Objects.equals(oldGrossNationalProduct, otherCountry.oldGrossNationalProduct);
+                && Objects.equals(oldGrossNationalProduct, otherCountry.oldGrossNationalProduct));
     }
 
     @Override

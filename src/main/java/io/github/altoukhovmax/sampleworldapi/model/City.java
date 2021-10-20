@@ -35,44 +35,54 @@ public class City {
     public City() {
     }
 
-    public City(String name,
-                Country country,
-                String districtName,
-                int populationCount) {
-        this.name = name;
-        this.country = country;
-        this.districtName = districtName;
-        this.populationCount = populationCount;
-    }
-
     public int getIdentifier() {
         return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Country getCountry() {
         return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getDistrictName() {
         return districtName;
     }
 
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
     public int getPopulationCount() {
         return populationCount;
     }
 
+    public void setPopulationCount(int populationCount) {
+        this.populationCount = populationCount;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof City otherCity
+        return (this == obj) || (obj instanceof City otherCity
                 && Objects.equals(identifier, otherCity.identifier)
                 && Objects.equals(name, otherCity.name)
                 && Objects.equals(country, otherCity.country)
                 && Objects.equals(districtName, otherCity.districtName)
-                && Objects.equals(populationCount, otherCity.populationCount);
+                && Objects.equals(populationCount, otherCity.populationCount));
     }
 
     @Override
