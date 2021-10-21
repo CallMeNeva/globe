@@ -1,5 +1,6 @@
 package io.github.altoukhovmax.sampleworldapi.web;
 
+import io.github.altoukhovmax.sampleworldapi.model.Continent;
 import io.github.altoukhovmax.sampleworldapi.model.Country;
 import io.github.altoukhovmax.sampleworldapi.repository.CountryRepository;
 import io.github.altoukhovmax.sampleworldapi.web.dto.CountryDTO;
@@ -10,9 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/countries", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,7 +35,10 @@ public class CountryController extends ResourceControllerBase<Country, CountryDT
     }
 
     @GetMapping
-    public ResponseEntity<List<CountryDTO>> showAll() {
-        return showList(repository.findAll());
+    public ResponseEntity<List<CountryDTO>> showAll(@RequestParam("continent") Optional<String> continentName) {
+        List<Country> countries = continentName
+                .map(name -> repository.findCountriesByContinent(Continent.fromDisplayName(name)))
+                .orElseGet(repository::findAll);
+        return showList(countries);
     }
 }
