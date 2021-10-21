@@ -20,9 +20,11 @@ public abstract class ResourceControllerBase<E, D> {
     }
 
     protected ResponseEntity<List<D>> showList(List<E> entities) {
-        return ResponseEntity.ok(entities
-                .stream()
-                .map(entityDTOConverter::convert)
-                .collect(Collectors.toList()));
+        return entities.isEmpty() ?
+                ResponseEntity.notFound().build() :
+                ResponseEntity.ok(entities
+                        .stream()
+                        .map(entityDTOConverter::convert)
+                        .collect(Collectors.toList()));
     }
 }
