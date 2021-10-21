@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/countries", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,10 +34,10 @@ public class CountryController extends ResourceControllerBase<Country, CountryDT
     }
 
     @GetMapping
-    public ResponseEntity<List<CountryDTO>> showAll(@RequestParam("continent") Optional<String> continentName) {
-        List<Country> countries = continentName
-                .map(name -> repository.findCountriesByContinent(Continent.fromDisplayName(name)))
-                .orElseGet(repository::findAll);
+    public ResponseEntity<List<CountryDTO>> showAll(@RequestParam(value = "continent", required = false) String continentName) {
+        List<Country> countries = continentName == null ?
+                repository.findAll() :
+                repository.findCountriesByContinent(Continent.fromDisplayName(continentName));
         return showList(countries);
     }
 }

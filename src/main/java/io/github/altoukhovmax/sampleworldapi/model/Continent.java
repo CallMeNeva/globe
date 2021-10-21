@@ -25,6 +25,6 @@ public enum Continent {
         return Stream.of(values())
                 .filter(continent -> continent.getDisplayName().equals(name))
                 .findAny()
-                .orElseThrow(() -> new IllegalArgumentException("Unexpected value: '" + name + '\''));
+                .orElse(null);
     }
 }

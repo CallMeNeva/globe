@@ -8,4 +8,6 @@ import java.util.List;
 public interface LanguageRepository extends JpaRepository<Language, Language.PrimaryKey> {
 
     List<Language> findLanguagesByName(String name);
+
+    List<Language> findLanguagesByCountry_Alpha3Code(String countryAlpha3Code);
 }
