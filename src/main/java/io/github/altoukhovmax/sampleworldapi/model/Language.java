@@ -25,7 +25,7 @@ public class Language {
 
         @Override
         public boolean equals(Object obj) {
-            return obj instanceof PrimaryKey otherKey
+            return (this == obj) || obj instanceof PrimaryKey otherKey
                     && Objects.equals(name, otherKey.name)
                     && Objects.equals(country, otherKey.country);
         }

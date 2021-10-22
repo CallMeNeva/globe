@@ -4,7 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply = true)
-public final class BooleanCharacterConverter implements AttributeConverter<Boolean, Character> {
+public class BooleanCharacterConverter implements AttributeConverter<Boolean, Character> {
 
     private static final char TRUE_CHAR_VALUE = 'T';
     private static final char FALSE_CHAR_VALUE = 'F';
