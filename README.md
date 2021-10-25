@@ -94,5 +94,7 @@ spring.datasource.password=admin
 The DB URL is initially set to `localhost` on MySQL's default port, and if needed can be customized as well. Refer to
 the Spring and MySQL docs for more information.
 
+Further instructions are *coming soon™*
+
 ## License
 This software is distributed under the [MIT license](LICENSE).
