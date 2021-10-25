@@ -9,20 +9,20 @@ import java.util.stream.Collectors;
 
 public abstract class ResourceControllerBase<E, D> {
 
-    private final Converter<E, D> entityDTOConverter;
+    private final Converter<E, D> entityConverter;
 
-    protected ResourceControllerBase(Converter<E, D> entityDTOConverter) {
-        this.entityDTOConverter = entityDTOConverter;
+    protected ResourceControllerBase(Converter<E, D> entityConverter) {
+        this.entityConverter = entityConverter;
     }
 
     protected ResponseEntity<D> showOne(Optional<E> entity) {
-        return ResponseEntity.of(entity.map(entityDTOConverter::convert));
+        return ResponseEntity.of(entity.map(entityConverter::convert));
     }
 
     protected ResponseEntity<List<D>> showList(List<E> entities) {
         return ResponseEntity.ok(entities
                 .stream()
-                .map(entityDTOConverter::convert)
+                .map(entityConverter::convert)
                 .collect(Collectors.toList()));
     }
 }
