@@ -77,5 +77,22 @@ All endpoints return an HTTP OK status code on a successful response.
 ## Build
 *Coming soon™*
 
+## Run
+
+### Prerequisites
+Before you can run the application, you'll have to specify a DB user's username and password for access. One way to do
+so is via an `application.properties` configuration file. A minimal template is included in this repository and is
+located at `src/main/resources/application.properties`. Simply assign the values (*without* quotation marks) to their
+respective properties, names of which should be pretty self-explanatory.
+
+Example:
+```properties
+spring.datasource.username=admin
+spring.datasource.password=admin
+```
+
+The DB URL is initially set to `localhost` on MySQL's default port, and if needed can be customized as well. Refer to
+the Spring and MySQL docs for more information.
+
 ## License
 This software is distributed under the [MIT license](LICENSE).
