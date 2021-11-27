@@ -1,7 +1,6 @@
 package io.github.altoukhovmax.worldapi.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.altoukhovmax.worldapi.entity.Country;
 
 import java.math.BigDecimal;
 import java.time.Year;
@@ -20,21 +19,4 @@ public record CountryDTO(@JsonProperty("name") String name,
                          @JsonProperty("lifeExpectancy") Float lifeExpectancy, // See related comment in entity class
                          @JsonProperty("GNP") BigDecimal grossNationalProduct,
                          @JsonProperty("oldGNP") BigDecimal oldGrossNationalProduct) {
-
-    public CountryDTO(Country country) {
-        this(country.getName(),
-             country.getLocalName(),
-             country.getAlpha2Code(),
-             country.getCapital() == null ? null : country.getCapital().getName(),
-             country.getContinent().getDisplayName(),
-             country.getRegionName(),
-             country.getSurfaceArea(),
-             country.getGovernmentFormName(),
-             country.getHeadOfStateName(),
-             country.getIndependenceYear(),
-             country.getPopulationCount(),
-             country.getLifeExpectancy(),
-             country.getGrossNationalProduct(),
-             country.getOldGrossNationalProduct());
-    }
 }

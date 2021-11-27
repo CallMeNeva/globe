@@ -3,11 +3,12 @@ package io.github.altoukhovmax.worldapi.web;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract class ResourceControllerBase<E, D> {
+public abstract sealed class ResourceControllerBase<E, D>
+        permits CityController, CountryController, LanguageController {
 
     private final Converter<E, D> entityConverter;
 
@@ -15,13 +16,12 @@ public abstract class ResourceControllerBase<E, D> {
         this.entityConverter = entityConverter;
     }
 
-    protected ResponseEntity<D> showOne(Optional<E> entity) {
+    protected ResponseEntity<D> responseOf(Optional<E> entity) {
         return ResponseEntity.of(entity.map(entityConverter::convert));
     }
 
-    protected ResponseEntity<List<D>> showList(List<E> entities) {
-        return ResponseEntity.ok(entities
-                .stream()
+    protected ResponseEntity<Collection<D>> responseOf(Collection<E> entities) {
+        return ResponseEntity.ok(entities.stream()
                 .map(entityConverter::convert)
                 .collect(Collectors.toList()));
     }

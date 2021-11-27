@@ -1,11 +1,12 @@
 package io.github.altoukhovmax.worldapi.web;
 
-import io.github.altoukhovmax.worldapi.entity.attribute.Continent;
 import io.github.altoukhovmax.worldapi.entity.Country;
+import io.github.altoukhovmax.worldapi.entity.attribute.Continent;
 import io.github.altoukhovmax.worldapi.repository.CountryRepository;
 import io.github.altoukhovmax.worldapi.web.dto.CountryDTO;
 import io.github.altoukhovmax.worldapi.web.dto.converter.CountryDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,30 +15,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/countries", produces = MediaType.APPLICATION_JSON_VALUE)
-public class CountryController extends ResourceControllerBase<Country, CountryDTO> {
+@RequestMapping(value = "countries", produces = MediaType.APPLICATION_JSON_VALUE)
+public final class CountryController extends ResourceControllerBase<Country, CountryDTO> {
 
     private final CountryRepository repository;
 
     @Autowired
     public CountryController(CountryRepository repository) {
-        super(new CountryDTOConverter());
+        super(CountryDTOConverter.INSTANCE);
         this.repository = repository;
     }
 
-    @GetMapping("/{alpha3Code}")
-    public ResponseEntity<CountryDTO> showByAlpha3Code(@PathVariable String alpha3Code) {
-        return showOne(repository.findById(alpha3Code));
+    @GetMapping
+    public ResponseEntity<Collection<CountryDTO>> all(@RequestParam(value = "continent", required = false) String continentName) {
+        if (continentName == null) {
+            return responseOf(repository.findAll());
+        }
+        Optional<Continent> continent = Continent.byDisplayName(continentName);
+        return continent.map(c -> responseOf(repository.findByContinent(c)))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
-    @GetMapping
-    public ResponseEntity<List<CountryDTO>> showAll(@RequestParam(value = "continent", required = false) String continentName) {
-        List<Country> countries = continentName == null ?
-                repository.findAll() :
-                repository.findCountriesByContinent(Continent.fromDisplayName(continentName));
-        return showList(countries);
+    @GetMapping("{alpha3Code}")
+    public ResponseEntity<CountryDTO> byAlpha3Code(@PathVariable String alpha3Code) {
+        return responseOf(repository.findById(alpha3Code));
+    }
+
+    @GetMapping("most-populated")
+    public ResponseEntity<CountryDTO> mostPopulated() {
+        return responseOf(repository.findMostPopulated());
+    }
+
+    @GetMapping("least-populated")
+    public ResponseEntity<CountryDTO> leastPopulated() {
+        return responseOf(repository.findLeastPopulated());
+    }
+
+    @GetMapping("largest")
+    public ResponseEntity<CountryDTO> largest() {
+        return responseOf(repository.findLargest());
+    }
+
+    @GetMapping("smallest")
+    public ResponseEntity<CountryDTO> smallest() {
+        return responseOf(repository.findSmallest());
     }
 }
