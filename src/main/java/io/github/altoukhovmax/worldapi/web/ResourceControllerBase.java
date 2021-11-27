@@ -7,8 +7,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public abstract sealed class ResourceControllerBase<E, D>
-        permits CityController, CountryController, LanguageController {
+public abstract class ResourceControllerBase<E, D> {
 
     private final Converter<E, D> entityConverter;
 
