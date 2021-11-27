@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.worldapi.model;
+package io.github.altoukhovmax.worldapi.entity.attribute;
 
 import java.util.stream.Stream;
 

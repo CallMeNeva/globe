@@ -1,6 +1,6 @@
 package io.github.altoukhovmax.worldapi.web;
 
-import io.github.altoukhovmax.worldapi.model.City;
+import io.github.altoukhovmax.worldapi.entity.City;
 import io.github.altoukhovmax.worldapi.repository.CityRepository;
 import io.github.altoukhovmax.worldapi.web.dto.CityDTO;
 import io.github.altoukhovmax.worldapi.web.dto.converter.CityDTOConverter;

@@ -1,4 +1,6 @@
-package io.github.altoukhovmax.worldapi.model;
+package io.github.altoukhovmax.worldapi.entity;
+
+import io.github.altoukhovmax.worldapi.entity.attribute.Continent;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

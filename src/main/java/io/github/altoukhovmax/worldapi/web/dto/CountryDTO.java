@@ -1,7 +1,7 @@
 package io.github.altoukhovmax.worldapi.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.altoukhovmax.worldapi.model.Country;
+import io.github.altoukhovmax.worldapi.entity.Country;
 
 import java.math.BigDecimal;
 import java.time.Year;

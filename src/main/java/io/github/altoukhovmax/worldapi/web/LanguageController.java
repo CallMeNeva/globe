@@ -1,6 +1,6 @@
 package io.github.altoukhovmax.worldapi.web;
 
-import io.github.altoukhovmax.worldapi.model.Language;
+import io.github.altoukhovmax.worldapi.entity.Language;
 import io.github.altoukhovmax.worldapi.repository.LanguageRepository;
 import io.github.altoukhovmax.worldapi.web.dto.LanguageDTO;
 import io.github.altoukhovmax.worldapi.web.dto.converter.LanguageDTOConverter;

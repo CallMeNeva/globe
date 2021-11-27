@@ -1,6 +1,6 @@
 package io.github.altoukhovmax.worldapi.web.dto.converter;
 
-import io.github.altoukhovmax.worldapi.model.Country;
+import io.github.altoukhovmax.worldapi.entity.Country;
 import io.github.altoukhovmax.worldapi.web.dto.CountryDTO;
 import org.springframework.core.convert.converter.Converter;
 

@@ -1,7 +1,7 @@
 package io.github.altoukhovmax.worldapi.web;
 
-import io.github.altoukhovmax.worldapi.model.Continent;
-import io.github.altoukhovmax.worldapi.model.Country;
+import io.github.altoukhovmax.worldapi.entity.attribute.Continent;
+import io.github.altoukhovmax.worldapi.entity.Country;
 import io.github.altoukhovmax.worldapi.repository.CountryRepository;
 import io.github.altoukhovmax.worldapi.web.dto.CountryDTO;
 import io.github.altoukhovmax.worldapi.web.dto.converter.CountryDTOConverter;
