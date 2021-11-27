@@ -1,6 +1,6 @@
-package io.github.altoukhovmax.sampleworldapi.model.converter;
+package io.github.altoukhovmax.worldapi.model.converter;
 
-import io.github.altoukhovmax.sampleworldapi.model.Continent;
+import io.github.altoukhovmax.worldapi.model.Continent;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

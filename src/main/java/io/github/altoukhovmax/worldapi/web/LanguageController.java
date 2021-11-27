@@ -1,9 +1,9 @@
-package io.github.altoukhovmax.sampleworldapi.web;
+package io.github.altoukhovmax.worldapi.web;
 
-import io.github.altoukhovmax.sampleworldapi.model.Language;
-import io.github.altoukhovmax.sampleworldapi.repository.LanguageRepository;
-import io.github.altoukhovmax.sampleworldapi.web.dto.LanguageDTO;
-import io.github.altoukhovmax.sampleworldapi.web.dto.converter.LanguageDTOConverter;
+import io.github.altoukhovmax.worldapi.model.Language;
+import io.github.altoukhovmax.worldapi.repository.LanguageRepository;
+import io.github.altoukhovmax.worldapi.web.dto.LanguageDTO;
+import io.github.altoukhovmax.worldapi.web.dto.converter.LanguageDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

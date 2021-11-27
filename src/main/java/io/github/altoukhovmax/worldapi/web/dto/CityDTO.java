@@ -1,7 +1,7 @@
-package io.github.altoukhovmax.sampleworldapi.web.dto;
+package io.github.altoukhovmax.worldapi.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.altoukhovmax.sampleworldapi.model.City;
+import io.github.altoukhovmax.worldapi.model.City;
 
 public record CityDTO(@JsonProperty("name") String name,
                       @JsonProperty("country") String countryName,

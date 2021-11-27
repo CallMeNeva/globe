@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.sampleworldapi.model.converter;
+package io.github.altoukhovmax.worldapi.model.converter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

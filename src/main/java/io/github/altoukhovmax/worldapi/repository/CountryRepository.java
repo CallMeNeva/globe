@@ -1,7 +1,7 @@
-package io.github.altoukhovmax.sampleworldapi.repository;
+package io.github.altoukhovmax.worldapi.repository;
 
-import io.github.altoukhovmax.sampleworldapi.model.Continent;
-import io.github.altoukhovmax.sampleworldapi.model.Country;
+import io.github.altoukhovmax.worldapi.model.Continent;
+import io.github.altoukhovmax.worldapi.model.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

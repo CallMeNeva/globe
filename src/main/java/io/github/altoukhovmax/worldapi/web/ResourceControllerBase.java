@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.sampleworldapi.web;
+package io.github.altoukhovmax.worldapi.web;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.ResponseEntity;

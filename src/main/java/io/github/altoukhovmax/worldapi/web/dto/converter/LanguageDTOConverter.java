@@ -1,7 +1,7 @@
-package io.github.altoukhovmax.sampleworldapi.web.dto.converter;
+package io.github.altoukhovmax.worldapi.web.dto.converter;
 
-import io.github.altoukhovmax.sampleworldapi.model.Language;
-import io.github.altoukhovmax.sampleworldapi.web.dto.LanguageDTO;
+import io.github.altoukhovmax.worldapi.model.Language;
+import io.github.altoukhovmax.worldapi.web.dto.LanguageDTO;
 import org.springframework.core.convert.converter.Converter;
 
 public class LanguageDTOConverter implements Converter<Language, LanguageDTO> {

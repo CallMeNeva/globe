@@ -1,6 +1,6 @@
-package io.github.altoukhovmax.sampleworldapi.repository;
+package io.github.altoukhovmax.worldapi.repository;
 
-import io.github.altoukhovmax.sampleworldapi.model.Language;
+import io.github.altoukhovmax.worldapi.model.Language;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

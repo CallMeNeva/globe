@@ -1,10 +1,10 @@
-package io.github.altoukhovmax.sampleworldapi.web;
+package io.github.altoukhovmax.worldapi.web;
 
-import io.github.altoukhovmax.sampleworldapi.model.Continent;
-import io.github.altoukhovmax.sampleworldapi.model.Country;
-import io.github.altoukhovmax.sampleworldapi.repository.CountryRepository;
-import io.github.altoukhovmax.sampleworldapi.web.dto.CountryDTO;
-import io.github.altoukhovmax.sampleworldapi.web.dto.converter.CountryDTOConverter;
+import io.github.altoukhovmax.worldapi.model.Continent;
+import io.github.altoukhovmax.worldapi.model.Country;
+import io.github.altoukhovmax.worldapi.repository.CountryRepository;
+import io.github.altoukhovmax.worldapi.web.dto.CountryDTO;
+import io.github.altoukhovmax.worldapi.web.dto.converter.CountryDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

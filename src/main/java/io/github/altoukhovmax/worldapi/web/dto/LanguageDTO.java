@@ -1,7 +1,7 @@
-package io.github.altoukhovmax.sampleworldapi.web.dto;
+package io.github.altoukhovmax.worldapi.web.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.altoukhovmax.sampleworldapi.model.Language;
+import io.github.altoukhovmax.worldapi.model.Language;
 
 public record LanguageDTO(@JsonProperty("name") String name,
                           @JsonProperty("country") String countryName,
