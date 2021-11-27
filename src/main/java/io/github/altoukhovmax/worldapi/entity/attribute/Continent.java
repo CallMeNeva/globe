@@ -1,5 +1,6 @@
 package io.github.altoukhovmax.worldapi.entity.attribute;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public enum Continent {
@@ -17,14 +18,13 @@ public enum Continent {
         this.displayName = displayName;
     }
 
-    public String getDisplayName() {
+    public String displayName() {
         return displayName;
     }
 
-    public static Continent fromDisplayName(String name) {
+    public static Optional<Continent> byDisplayName(String name) {
         return Stream.of(values())
-                .filter(continent -> continent.getDisplayName().equals(name))
-                .findAny()
-                .orElse(null);
+                .filter(continent -> continent.displayName().equals(name))
+                .findAny();
     }
 }

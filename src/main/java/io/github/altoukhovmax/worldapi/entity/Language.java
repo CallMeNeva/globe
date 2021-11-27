@@ -23,6 +23,22 @@ public class Language {
         public PrimaryKey() {
         }
 
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Country getCountry() {
+            return country;
+        }
+
+        public void setCountry(Country country) {
+            this.country = country;
+        }
+
         @Override
         public boolean equals(Object obj) {
             return (this == obj) || obj instanceof PrimaryKey otherKey
@@ -87,8 +103,8 @@ public class Language {
     }
 
     @Override
-    public boolean equals(Object anObject) {
-        return (this == anObject) || (anObject instanceof Language otherLanguage
+    public boolean equals(Object obj) {
+        return (this == obj) || (obj instanceof Language otherLanguage
                 && Objects.equals(name, otherLanguage.name)
                 && Objects.equals(country, otherLanguage.country)
                 && Objects.equals(official, otherLanguage.official)
@@ -102,6 +118,6 @@ public class Language {
 
     @Override
     public String toString() {
-        return name + " [" + country.getName() + ']';
+        return name + " (" + country.getName() + ')';
     }
 }

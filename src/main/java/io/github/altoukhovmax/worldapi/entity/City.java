@@ -17,7 +17,7 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int identifier;
+    private int id;
 
     @Column(name = "name", length = 35, nullable = false)
     private String name;
@@ -35,12 +35,12 @@ public class City {
     public City() {
     }
 
-    public int getIdentifier() {
-        return identifier;
+    public int getId() {
+        return id;
     }
 
-    public void setIdentifier(int identifier) {
-        this.identifier = identifier;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -78,7 +78,7 @@ public class City {
     @Override
     public boolean equals(Object obj) {
         return (this == obj) || (obj instanceof City otherCity
-                && Objects.equals(identifier, otherCity.identifier)
+                && Objects.equals(id, otherCity.id)
                 && Objects.equals(name, otherCity.name)
                 && Objects.equals(country, otherCity.country)
                 && Objects.equals(districtName, otherCity.districtName)
@@ -87,7 +87,7 @@ public class City {
 
     @Override
     public int hashCode() {
-        return Objects.hash(identifier, name, country, districtName, populationCount);
+        return Objects.hash(id, name, country, districtName, populationCount);
     }
 
     @Override

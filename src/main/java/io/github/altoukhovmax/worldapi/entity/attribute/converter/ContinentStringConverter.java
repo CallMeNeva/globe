@@ -6,15 +6,18 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply = true)
-public class ContinentStringConverter implements AttributeConverter<Continent, String> {
+public final class ContinentStringConverter implements AttributeConverter<Continent, String> {
+
+    // Column defined as non-nullable; null-checks are not required
 
     @Override
-    public String convertToDatabaseColumn(Continent continent) {
-        return continent == null ? null : continent.getDisplayName();
+    public String convertToDatabaseColumn(Continent attribute) {
+        return attribute.displayName();
     }
 
     @Override
-    public Continent convertToEntityAttribute(String s) {
-        return s == null ? null : Continent.fromDisplayName(s);
+    public Continent convertToEntityAttribute(String dbData) {
+        return Continent.byDisplayName(dbData)
+                .orElseThrow(() -> new IllegalStateException("Unsupported value: " + dbData));
     }
 }
