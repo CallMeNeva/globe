@@ -58,24 +58,18 @@ Response example:
 Response example:
 ```json
 [
-    {
-        "name": "Finnish",
-        "country": "Estonia",
-        "official": false,
-        "percentage": 0.7
-    },
-    {
-        "name": "Finnish",
-        "country": "Finland",
-        "official": true,
-        "percentage": 92.7
-    },
-    {
-        "name": "Finnish",
-        "country": "Sweden",
-        "official": false,
-        "percentage": 2.4
-    }
+  {
+    "name":"English",
+    "country":"Malta",
+    "official":true,
+    "percentage":2.1
+  },
+  {
+    "name":"Maltese",
+    "country":"Malta",
+    "official":true,
+    "percentage":95.8
+  }
 ]
 ```
 
