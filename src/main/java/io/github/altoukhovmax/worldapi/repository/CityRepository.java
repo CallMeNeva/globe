@@ -15,6 +15,6 @@ public interface CityRepository extends JpaRepository<City, Integer> {
     @Query("SELECT c FROM City c WHERE c.populationCount = (SELECT MAX(c.populationCount) FROM City c)")
     Optional<City> findMostPopulated();
 
-    @Query("SELECT c FROM City c WHERE c.populationCount = (SELECT MIN(c.populationCount) FROM City c)")
+    @Query("SELECT c FROM City c WHERE c.populationCount = (SELECT MIN(c.populationCount) FROM City c WHERE c.populationCount > 0)")
     Optional<City> findLeastPopulated();
 }

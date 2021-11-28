@@ -16,7 +16,7 @@ public interface CountryRepository extends JpaRepository<Country, String> {
     @Query("SELECT c FROM Country c WHERE c.populationCount = (SELECT MAX(c.populationCount) FROM Country c)")
     Optional<Country> findMostPopulated();
 
-    @Query("SELECT c FROM Country c WHERE c.populationCount = (SELECT MIN(c.populationCount) FROM Country c)")
+    @Query("SELECT c FROM Country c WHERE c.populationCount = (SELECT MIN(c.populationCount) FROM Country c WHERE c.populationCount > 0)")
     Optional<Country> findLeastPopulated();
 
     @Query("SELECT c FROM Country c WHERE c.surfaceArea = (SELECT MAX(c.surfaceArea) FROM Country c)")
