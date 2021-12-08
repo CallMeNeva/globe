@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.worldapi.web.dto;
+package io.github.altoukhov_max.world.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

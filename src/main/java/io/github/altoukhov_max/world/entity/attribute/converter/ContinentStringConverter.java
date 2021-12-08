@@ -1,6 +1,6 @@
-package io.github.altoukhovmax.worldapi.entity.attribute.converter;
+package io.github.altoukhov_max.world.entity.attribute.converter;
 
-import io.github.altoukhovmax.worldapi.entity.attribute.Continent;
+import io.github.altoukhov_max.world.entity.attribute.Continent;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

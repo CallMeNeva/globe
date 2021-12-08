@@ -1,9 +1,9 @@
-package io.github.altoukhovmax.worldapi.web;
+package io.github.altoukhov_max.world.api;
 
-import io.github.altoukhovmax.worldapi.entity.City;
-import io.github.altoukhovmax.worldapi.repository.CityRepository;
-import io.github.altoukhovmax.worldapi.web.dto.CityDTO;
-import io.github.altoukhovmax.worldapi.web.dto.converter.CityDTOConverter;
+import io.github.altoukhov_max.world.entity.City;
+import io.github.altoukhov_max.world.repository.CityRepository;
+import io.github.altoukhov_max.world.api.dto.CityDTO;
+import io.github.altoukhov_max.world.api.dto.converter.CityDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

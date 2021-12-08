@@ -1,7 +1,7 @@
-package io.github.altoukhovmax.worldapi.web.dto.converter;
+package io.github.altoukhov_max.world.api.dto.converter;
 
-import io.github.altoukhovmax.worldapi.entity.City;
-import io.github.altoukhovmax.worldapi.web.dto.CityDTO;
+import io.github.altoukhov_max.world.entity.City;
+import io.github.altoukhov_max.world.api.dto.CityDTO;
 import org.springframework.core.convert.converter.Converter;
 
 public enum CityDTOConverter implements Converter<City, CityDTO> {

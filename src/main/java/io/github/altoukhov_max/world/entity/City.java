@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.worldapi.entity;
+package io.github.altoukhov_max.world.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

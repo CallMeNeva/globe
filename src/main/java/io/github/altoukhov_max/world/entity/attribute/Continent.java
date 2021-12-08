@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.worldapi.entity.attribute;
+package io.github.altoukhov_max.world.entity.attribute;
 
 import java.util.Optional;
 import java.util.stream.Stream;

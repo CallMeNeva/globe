@@ -1,6 +1,6 @@
-package io.github.altoukhovmax.worldapi.entity;
+package io.github.altoukhov_max.world.entity;
 
-import io.github.altoukhovmax.worldapi.entity.attribute.Continent;
+import io.github.altoukhov_max.world.entity.attribute.Continent;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

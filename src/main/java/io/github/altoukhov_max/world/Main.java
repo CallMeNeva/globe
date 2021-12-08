@@ -1,4 +1,4 @@
-package io.github.altoukhovmax.worldapi;
+package io.github.altoukhov_max.world;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
-package io.github.altoukhovmax.worldapi.web.dto.converter;
+package io.github.altoukhov_max.world.api.dto.converter;
 
-import io.github.altoukhovmax.worldapi.entity.Country;
-import io.github.altoukhovmax.worldapi.web.dto.CountryDTO;
+import io.github.altoukhov_max.world.entity.Country;
+import io.github.altoukhov_max.world.api.dto.CountryDTO;
 import org.springframework.core.convert.converter.Converter;
 
 public enum CountryDTOConverter implements Converter<Country, CountryDTO> {
