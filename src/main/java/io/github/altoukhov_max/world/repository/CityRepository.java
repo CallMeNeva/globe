@@ -3,18 +3,26 @@ package io.github.altoukhov_max.world.repository;
 import io.github.altoukhov_max.world.entity.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface CityRepository extends JpaRepository<City, Integer> {
 
-    @Query("SELECT c FROM City c WHERE c.country.alpha3Code = ?1")
-    List<City> findByAlpha3Code(String alpha3Code);
+    @Query(value = "SELECT * FROM world.city WHERE CountryCode = ?1", nativeQuery = true)
+    List<City> findOfCountry(String alpha3Code);
 
-    @Query("SELECT c FROM City c WHERE c.populationCount = (SELECT MAX(c.populationCount) FROM City c)")
+    @Query(value = "SELECT * FROM world.city ORDER BY Population DESC LIMIT 1", nativeQuery = true)
     Optional<City> findMostPopulated();
 
-    @Query("SELECT c FROM City c WHERE c.populationCount = (SELECT MIN(c.populationCount) FROM City c WHERE c.populationCount > 0)")
+    @Query(value = "SELECT * FROM world.city WHERE CountryCode = ?1 ORDER BY Population DESC LIMIT 1", nativeQuery = true)
+    Optional<City> findMostPopulatedOfCountry(String alpha3Code);
+
+    @Query(value = "SELECT * FROM world.city ORDER BY Population LIMIT 1", nativeQuery = true)
     Optional<City> findLeastPopulated();
+
+    @Query(value = "SELECT * FROM world.city WHERE CountryCode = ?1 ORDER BY Population LIMIT 1", nativeQuery = true)
+    Optional<City> findLeastPopulatedOfCountry(String alpha3Code);
 }

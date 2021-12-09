@@ -1,27 +1,40 @@
 package io.github.altoukhov_max.world.repository;
 
 import io.github.altoukhov_max.world.entity.Country;
-import io.github.altoukhov_max.world.entity.attribute.Continent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface CountryRepository extends JpaRepository<Country, String> {
 
-    @Query("SELECT c FROM Country c WHERE c.continent = ?1")
-    List<Country> findByContinent(Continent continent);
+    @Query(value = "SELECT * FROM world.country WHERE Continent = ?1", nativeQuery = true)
+    List<Country> findOfContinent(String continentName);
 
-    @Query("SELECT c FROM Country c WHERE c.populationCount = (SELECT MAX(c.populationCount) FROM Country c)")
+    @Query(value = "SELECT * FROM world.country ORDER BY Population DESC LIMIT 1", nativeQuery = true)
     Optional<Country> findMostPopulated();
 
-    @Query("SELECT c FROM Country c WHERE c.populationCount = (SELECT MIN(c.populationCount) FROM Country c WHERE c.populationCount > 0)")
+    @Query(value = "SELECT * FROM world.country WHERE Continent = ?1 ORDER BY Population DESC LIMIT 1", nativeQuery = true)
+    Optional<Country> findMostPopulatedOfContinent(String continentName);
+
+    @Query(value = "SELECT * FROM world.country ORDER BY Population LIMIT 1", nativeQuery = true)
     Optional<Country> findLeastPopulated();
 
-    @Query("SELECT c FROM Country c WHERE c.surfaceArea = (SELECT MAX(c.surfaceArea) FROM Country c)")
+    @Query(value = "SELECT * FROM world.country WHERE Continent = ?1 ORDER BY Population LIMIT 1", nativeQuery = true)
+    Optional<Country> findLeastPopulatedOfContinent(String continentName);
+
+    @Query(value = "SELECT * FROM world.country ORDER BY SurfaceArea DESC LIMIT 1", nativeQuery = true)
     Optional<Country> findLargest();
 
-    @Query("SELECT c FROM Country c WHERE c.surfaceArea = (SELECT MIN(c.surfaceArea) FROM Country c)")
+    @Query(value = "SELECT * FROM world.country WHERE Continent = ?1 ORDER BY SurfaceArea DESC LIMIT 1", nativeQuery = true)
+    Optional<Country> findLargestOfContinent(String continentName);
+
+    @Query(value = "SELECT * FROM world.country ORDER BY SurfaceArea LIMIT 1", nativeQuery = true)
     Optional<Country> findSmallest();
+
+    @Query(value = "SELECT * FROM world.country WHERE Continent = ?1 ORDER BY SurfaceArea LIMIT 1", nativeQuery = true)
+    Optional<Country> findSmallestOfContinent(String continentName);
 }
