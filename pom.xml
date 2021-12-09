@@ -7,7 +7,7 @@
 
     <groupId>io.github.altoukhov_max</groupId>
     <artifactId>world-api</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
     <name>MySQL World DB Web API</name>
     <url>https://github.com/altoukhov-max/mysql-world-api</url>
