@@ -5,7 +5,6 @@ and Java 17.
 
 ## Usage
 General API notes:
-* Countries are identified using an [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country code;
 * All requests for a specific entity return `OK` (with a body) if one was found and an empty `Not Found` otherwise;
 * All requests for a list of entities return `OK` with a valid body - if no entities were found, the body is simply an empty list;
 * Any other types of responses are provided by the underlying framework and should not be depended upon by the client;
@@ -98,7 +97,7 @@ Once these requirements are met, simply follow these steps:
    mvn package
    ```
 
-You should now have an executable JAR file located in the generated `target/` directory, e.g. `target/world-api-1.2.0.jar`. To execute it,
+You should now have an executable JAR located in the generated `target/` directory, e.g. `target/world-api-1.2.0.jar`. To execute it,
 simply run `java -jar target/world-api-1.2.0.jar`.
 
 When running the application, DB username and password must be provided. One way to do so is via the `--username` and `--password` CLI 
