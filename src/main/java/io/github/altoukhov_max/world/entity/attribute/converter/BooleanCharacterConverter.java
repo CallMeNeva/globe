@@ -4,7 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply = true)
-public final class BooleanCharacterConverter implements AttributeConverter<Boolean, Character> {
+public class BooleanCharacterConverter implements AttributeConverter<Boolean, Character> {
 
     // Column defined as non-nullable; null-checks are not required
 

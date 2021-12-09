@@ -6,7 +6,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter(autoApply = true)
-public final class ContinentStringConverter implements AttributeConverter<Continent, String> {
+public class ContinentStringConverter implements AttributeConverter<Continent, String> {
 
     // Column defined as non-nullable; null-checks are not required
 
@@ -17,7 +17,6 @@ public final class ContinentStringConverter implements AttributeConverter<Contin
 
     @Override
     public Continent convertToEntityAttribute(String dbData) {
-        return Continent.byDisplayName(dbData)
-                .orElseThrow(() -> new IllegalStateException("Unsupported value: " + dbData));
+        return Continent.of(dbData).orElseThrow(() -> new IllegalStateException("Unsupported value: " + dbData));
     }
 }

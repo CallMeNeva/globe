@@ -4,13 +4,13 @@ import io.github.altoukhov_max.world.entity.attribute.Continent;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.Year;
-import java.util.Objects;
 
 @Entity
 @Table(name = "country")
@@ -29,7 +29,7 @@ public class Country {
     @Column(name = "code2", length = 2, nullable = false)
     private String alpha2Code;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "capital", referencedColumnName = "id")
     private City capital;
 
@@ -54,9 +54,9 @@ public class Country {
     @Column(name = "population", nullable = false)
     private int populationCount;
 
-    // java.time.Period doesn't work with floats[1] even though ISO-8601 officially supports fractions in its
-    // notation[2]. Calculating by hand in an AttributeConverter may lead to data inconsistencies between conversions.
-    // For these reasons a simple float is used instead. Wrapper class is used because column allows nulls.
+    // java.time.Period doesn't work with floats[1] even though ISO-8601 officially supports fractions in its notation[2]. Calculating by
+    // hand in an AttributeConverter may lead to data inconsistencies between conversions. For these reasons a simple float is used instead.
+    // Wrapper class is used because column allows nulls.
     //
     // References:
     // [1] https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Period.html#parse(java.lang.CharSequence)
@@ -70,8 +70,7 @@ public class Country {
     @Column(name = "gnpold", precision = 10, scale = 2)
     private BigDecimal oldGrossNationalProduct;
 
-    public Country() {
-    }
+    public Country() {}
 
     public String getName() {
         return name;
@@ -191,45 +190,6 @@ public class Country {
 
     public void setOldGrossNationalProduct(BigDecimal oldGrossNationalProduct) {
         this.oldGrossNationalProduct = oldGrossNationalProduct;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return (this == obj) || (obj instanceof Country otherCountry
-                && Objects.equals(name, otherCountry.name)
-                && Objects.equals(localName, otherCountry.localName)
-                && Objects.equals(alpha3Code, otherCountry.alpha3Code)
-                && Objects.equals(alpha2Code, otherCountry.alpha2Code)
-                && Objects.equals(capital, otherCountry.capital)
-                && Objects.equals(continent, otherCountry.continent)
-                && Objects.equals(regionName, otherCountry.regionName)
-                && Objects.equals(surfaceArea, otherCountry.surfaceArea)
-                && Objects.equals(governmentFormName, otherCountry.governmentFormName)
-                && Objects.equals(headOfStateName, otherCountry.headOfStateName)
-                && Objects.equals(independenceYear, otherCountry.independenceYear)
-                && Objects.equals(populationCount, otherCountry.populationCount)
-                && Objects.equals(lifeExpectancy, otherCountry.lifeExpectancy)
-                && Objects.equals(grossNationalProduct, otherCountry.grossNationalProduct)
-                && Objects.equals(oldGrossNationalProduct, otherCountry.oldGrossNationalProduct));
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name,
-                            localName,
-                            alpha3Code,
-                            alpha2Code,
-                            capital,
-                            continent,
-                            regionName,
-                            surfaceArea,
-                            governmentFormName,
-                            headOfStateName,
-                            independenceYear,
-                            populationCount,
-                            lifeExpectancy,
-                            grossNationalProduct,
-                            oldGrossNationalProduct);
     }
 
     @Override

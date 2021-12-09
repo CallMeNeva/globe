@@ -20,24 +20,7 @@ public class Language {
         private String name;
         private Country country;
 
-        public PrimaryKey() {
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Country getCountry() {
-            return country;
-        }
-
-        public void setCountry(Country country) {
-            this.country = country;
-        }
+        public PrimaryKey() {}
 
         @Override
         public boolean equals(Object obj) {
@@ -67,8 +50,7 @@ public class Language {
     @Column(name = "percentage", precision = 4, scale = 1, nullable = false)
     private float percentage;
 
-    public Language() {
-    }
+    public Language() {}
 
     public String getName() {
         return name;
@@ -100,20 +82,6 @@ public class Language {
 
     public void setPercentage(float percentage) {
         this.percentage = percentage;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return (this == obj) || (obj instanceof Language otherLanguage
-                && Objects.equals(name, otherLanguage.name)
-                && Objects.equals(country, otherLanguage.country)
-                && Objects.equals(official, otherLanguage.official)
-                && Objects.equals(percentage, otherLanguage.percentage));
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, country, official, percentage);
     }
 
     @Override

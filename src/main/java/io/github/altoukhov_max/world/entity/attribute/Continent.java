@@ -22,7 +22,7 @@ public enum Continent {
         return displayName;
     }
 
-    public static Optional<Continent> byDisplayName(String name) {
+    public static Optional<Continent> of(String name) {
         return Stream.of(values())
                 .filter(continent -> continent.displayName().equals(name))
                 .findAny();

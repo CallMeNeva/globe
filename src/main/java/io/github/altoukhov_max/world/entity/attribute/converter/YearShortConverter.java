@@ -5,7 +5,7 @@ import javax.persistence.Converter;
 import java.time.Year;
 
 @Converter(autoApply = true)
-public final class YearShortConverter implements AttributeConverter<Year, Short> {
+public class YearShortConverter implements AttributeConverter<Year, Short> {
 
     // Column defined as nullable: null-checks are required
 
