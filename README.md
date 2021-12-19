@@ -105,5 +105,11 @@ arguments, i.e. `java -jar target/world-api-1.2.0.jar --username=admin --passwor
 `application.properties` file, located in `src/resources/` (a rebuild is required if you choose this option). In both cases, you may also
 specify the DB host using `--host` or the respective application property (set to `localhost:3306` by default).
 
+## TODO
+- Model the following entity properties with more expressive types: `Country.lifeExpectancy`, `Language.percentage`
+- Implement proper entity `equals` and `hashCode`
+- Change group ID and root package name to another domain name to avoid issues with
+  [official Oracle conventions](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html)
+
 ## License
-This software is distributed under the [MIT license](LICENSE).
+This software is distributed under the [Apache 2.0 license](LICENSE).
