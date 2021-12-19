@@ -1,6 +1,21 @@
-# Maven
-target/
-
-# IntelliJ IDEA
+!.mvn/wrapper/maven-wrapper.jar
+.flattened-pom.xml
+.gradle
+*.sw?
+.#*
+*#
+*~
+.classpath
+.project
+.settings
+.gitignore
 .idea
+.factorypath
 *.iml
+bin
+target
+.springBeans
+.vscode/
+.sts4-cache/
+tmp*
+grapes
