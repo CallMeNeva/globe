@@ -17,6 +17,11 @@
 
 package io.github.altoukhov_max.world.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +34,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "city")
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode // FIXME: Most likely a source of bugs (and performance issues, according to IntelliJ IDEA)
 public class City {
+
+    // Primitives are marked as nullable/non-nullable simply to stay consistent with the related table creation DLL query
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,44 +60,7 @@ public class City {
     @Column(name = "population", nullable = false)
     private int populationCount;
 
-    public City() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public String getDistrictName() {
-        return districtName;
-    }
-
-    public void setDistrictName(String districtName) {
-        this.districtName = districtName;
-    }
-
-    public int getPopulationCount() {
-        return populationCount;
-    }
-
-    public void setPopulationCount(int populationCount) {
-        this.populationCount = populationCount;
-    }
-
+    // Non-generated to provide a simpler impl and avoid performance issues related to foreign key loading (according to IntelliJ IDEA)
     @Override
     public String toString() {
         return name;
