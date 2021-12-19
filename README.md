@@ -100,10 +100,13 @@ Once these requirements are met, simply follow these steps:
 You should now have an executable JAR located in the generated `target/` directory, e.g. `target/world-api-1.2.0.jar`. To execute it,
 simply run `java -jar target/world-api-1.2.0.jar`.
 
-When running the application, DB username and password must be provided. One way to do so is via the `--username` and `--password` CLI 
-arguments, i.e. `java -jar target/world-api-1.2.0.jar --username=admin --password=admin`. Another way is to specify these values in the 
-`application.properties` file, located in `src/resources/` (a rebuild is required if you choose this option). In both cases, you may also
-specify the DB host using `--host` or the respective application property (set to `localhost:3306` by default).
+When running the application, DB username and password must be provided. One way to do so is via the `--user` and `--password` CLI 
+arguments, i.e. `java -jar target/world-api-1.2.0.jar --user=admin --password=admin`. Another way is to specify these values in the 
+`application.properties` file, located in `src/resources/` (a rebuild is required if you choose this option).
+
+Additional (optional) parameters include:
+- `host` — to specify the DB host (default value: `localhost:3306`)
+- `prettify` — to enable/disable formatting of response JSON (default value: `false`)
 
 ## TODO
 - Model the following entity properties with more expressive types: `Country.lifeExpectancy`, `Language.percentage`
