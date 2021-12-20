@@ -17,36 +17,28 @@
 
 package io.github.altoukhov_max.world.entity.attribute;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.Optional;
-import java.util.stream.Stream;
 
-public enum Continent {
-    ASIA("Asia"),
-    EUROPE("Europe"),
-    NORTH_AMERICA("North America"),
-    AFRICA("Africa"),
-    OCEANIA("Oceania"),
-    ANTARCTICA("Antarctica"),
-    SOUTH_AMERICA("South America");
+public class ContinentTests {
 
-    private final String displayName;
-
-    Continent(String displayName) {
-        this.displayName = displayName;
+    @Test
+    public void presentOnValidName() {
+        Optional<Continent> continent = Continent.of("Europe");
+        Assertions.assertTrue(continent.isPresent());
     }
 
-    public String getDisplayName() {
-        return displayName;
+    @Test
+    public void emptyOnInvalidName() {
+        Optional<Continent> continent = Continent.of("Kalimdor");
+        Assertions.assertTrue(continent.isEmpty());
     }
 
-    public static Optional<Continent> of(String name) {
-        return Stream.of(values())
-                .filter(continent -> continent.getDisplayName().equals(name))
-                .findAny();
-    }
-
-    @Override
-    public String toString() {
-        return displayName;
+    @Test
+    public void emptyOnNullName() {
+        Optional<Continent> continent = Continent.of(null);
+        Assertions.assertTrue(continent.isEmpty());
     }
 }

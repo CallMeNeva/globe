@@ -41,7 +41,7 @@ import java.time.Year;
 @EqualsAndHashCode // FIXME: Most likely a source of bugs (and performance issues, according to IntelliJ IDEA)
 public class Country {
 
-    // Primitives are marked as nullable/non-nullable simply to stay consistent with the related table creation DLL query
+    // Primitives are marked as nullable/non-nullable simply to stay consistent with the related table creation DDL query
 
     @Column(name = "name", length = 52, nullable = false)
     private String name;

@@ -29,7 +29,7 @@ public enum CountryDTOMapper implements DTOMapper<Country, CountryDTO> {
                               entity.getLocalName(),
                               entity.getAlpha2Code(),
                               entity.getCapital() == null ? null : entity.getCapital().getName(),
-                              entity.getContinent().displayName(),
+                              entity.getContinent().getDisplayName(),
                               entity.getRegionName(),
                               entity.getSurfaceArea(),
                               entity.getGovernmentFormName(),

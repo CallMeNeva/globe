@@ -40,7 +40,7 @@ import java.io.Serializable;
 @EqualsAndHashCode // FIXME: Most likely a source of bugs (and performance issues, according to IntelliJ IDEA)
 public class Language {
 
-    // Primitives are marked as nullable/non-nullable simply to stay consistent with the related table creation DLL query
+    // Primitives are marked as nullable/non-nullable simply to stay consistent with the related table creation DDL query
 
     @NoArgsConstructor
     @EqualsAndHashCode

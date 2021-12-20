@@ -29,7 +29,7 @@ public class ContinentStringConverter implements AttributeConverter<Continent, S
 
     @Override
     public String convertToDatabaseColumn(Continent attribute) {
-        return attribute.displayName();
+        return attribute.getDisplayName();
     }
 
     @Override
