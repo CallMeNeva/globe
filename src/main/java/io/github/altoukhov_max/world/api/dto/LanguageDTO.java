@@ -18,9 +18,24 @@
 package io.github.altoukhov_max.world.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public record LanguageDTO(@JsonProperty("name") String name,
-                          @JsonProperty("country") String countryName,
-                          @JsonProperty("official") boolean official,
-                          @JsonProperty("percentage") float percentage) {
+@Getter
+@Setter
+@NoArgsConstructor
+public class LanguageDTO {
+
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("country")
+    private String countryName;
+
+    @JsonProperty("official")
+    private boolean official;
+
+    @JsonProperty("percentage")
+    private float percentage;
 }

@@ -18,22 +18,57 @@
 package io.github.altoukhov_max.world.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.Year;
 
-public record CountryDTO(@JsonProperty("name") String name,
-                         @JsonProperty("localName") String localName,
-                         @JsonProperty("alpha2Code") String alpha2Code,
-                         @JsonProperty("capital") String capitalName,
-                         @JsonProperty("continent") String continentName,
-                         @JsonProperty("region") String regionName,
-                         @JsonProperty("surfaceArea") BigDecimal surfaceArea,
-                         @JsonProperty("governmentForm") String governmentFormName,
-                         @JsonProperty("headOfState") String headOfStateName,
-                         @JsonProperty("independenceYear") Year independenceYear,
-                         @JsonProperty("population") int populationCount,
-                         @JsonProperty("lifeExpectancy") Float lifeExpectancy, // See related comment in entity class
-                         @JsonProperty("GNP") BigDecimal grossNationalProduct,
-                         @JsonProperty("oldGNP") BigDecimal oldGrossNationalProduct) {
+@Getter
+@Setter
+@NoArgsConstructor
+public class CountryDTO {
+
+    @JsonProperty("name")
+    private String name;
+
+    @JsonProperty("localName")
+    private String localName;
+
+    @JsonProperty("alpha2")
+    private String alpha2Code;
+
+    @JsonProperty("capital")
+    private String capitalName;
+
+    @JsonProperty("continent")
+    private String continentDisplayName;
+
+    @JsonProperty("region")
+    private String regionName;
+
+    @JsonProperty("surfaceArea")
+    private BigDecimal surfaceArea;
+
+    @JsonProperty("governmentForm")
+    private String governmentFormName;
+
+    @JsonProperty("headOfState")
+    private String headOfStateName;
+
+    @JsonProperty("independenceYear")
+    private Year independenceYear;
+
+    @JsonProperty("population")
+    private int populationCount;
+
+    @JsonProperty("lifeExpectancy")
+    private Float lifeExpectancy; // See related note in entity decl
+
+    @JsonProperty("GNP")
+    private BigDecimal grossNationalProduct;
+
+    @JsonProperty("oldGNP")
+    private BigDecimal oldGrossNationalProduct;
 }
