@@ -15,18 +15,17 @@
  *
  */
 
-package io.github.altoukhov_max.world.api.dto.mapper;
+package io.github.altoukhov_max.world;
 
-import java.util.List;
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@FunctionalInterface
-public interface DTOMapper<E, D> {
+@Configuration
+public class ModelMapperConfig {
 
-    D map(E entity);
-
-    default List<D> map(List<E> entities) {
-        return entities.stream()
-                .map(this::map)
-                .toList();
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }

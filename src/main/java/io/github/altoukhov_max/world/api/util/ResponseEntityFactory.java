@@ -17,36 +17,47 @@
 
 package io.github.altoukhov_max.world.api.util;
 
-import io.github.altoukhov_max.world.api.dto.mapper.DTOMapper;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-public class ResponseEntityFactory<E, D> {
+@Component
+public class ResponseEntityFactory {
 
-    private final DTOMapper<E, D> mapper;
+    private final ModelMapper modelMapper;
 
-    private ResponseEntityFactory(DTOMapper<E, D> mapper) {
-        this.mapper = mapper;
+    @Autowired
+    public ResponseEntityFactory(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
     }
 
-    public static <E, D> ResponseEntityFactory<E, D> withMapper(DTOMapper<E, D> mapper) {
-        Assert.notNull(mapper, "DTO mapper must not be null");
-        return new ResponseEntityFactory<>(mapper);
-    }
-
-    public ResponseEntity<D> create(Supplier<Optional<E>> entitySupplier) {
+    public <E, D> ResponseEntity<D> create(Supplier<Optional<E>> entitySupplier, Class<D> dtoClass) {
         Assert.notNull(entitySupplier, "Entity supplier must not be null");
+        Assert.notNull(dtoClass, "DTO class must not be null");
+
         Optional<E> entity = entitySupplier.get();
-        return ResponseEntity.of(entity.map(mapper::map));
+        Optional<D> dto = entity.map(e -> modelMapper.map(e, dtoClass));
+
+        return ResponseEntity.of(dto);
     }
 
-    public ResponseEntity<List<D>> createOfList(Supplier<List<E>> entityListSupplier) {
+    public <E, D> ResponseEntity<List<D>> createForList(Supplier<List<E>> entityListSupplier, Class<D> dtoClass) {
         Assert.notNull(entityListSupplier, "Entity list supplier must not be null");
+        Assert.notNull(dtoClass, "DTO class must not be null");
+
         List<E> entities = entityListSupplier.get();
-        return ResponseEntity.ok(mapper.map(entities));
+        Assert.notNull(entities, "Entity list must not be null");
+
+        List<D> dtos = entities.stream()
+                .map(entity -> modelMapper.map(entity, dtoClass))
+                .toList();
+
+        return ResponseEntity.ok(dtos);
     }
 }

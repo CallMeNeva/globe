@@ -18,7 +18,6 @@
 package io.github.altoukhov_max.world.api;
 
 import io.github.altoukhov_max.world.api.dto.CityDTO;
-import io.github.altoukhov_max.world.api.dto.mapper.CityDTOMapper;
 import io.github.altoukhov_max.world.api.util.ResponseEntityFactory;
 import io.github.altoukhov_max.world.entity.City;
 import io.github.altoukhov_max.world.repository.CityRepository;
@@ -31,38 +30,45 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 
 @RestController
 @RequestMapping(value = "cities", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CityController {
 
+    private static final Class<CityDTO> DTO_CLASS = CityDTO.class;
+
     private final CityRepository repository;
-    private final ResponseEntityFactory<City, CityDTO> responseEntityFactory;
+    private final ResponseEntityFactory responseEntityFactory;
 
     @Autowired
-    public CityController(CityRepository repository) {
+    public CityController(CityRepository repository, ResponseEntityFactory responseEntityFactory) {
         this.repository = repository;
-        this.responseEntityFactory = ResponseEntityFactory.withMapper(CityDTOMapper.INSTANCE);
+        this.responseEntityFactory = responseEntityFactory;
     }
 
     @GetMapping
     public ResponseEntity<List<CityDTO>> all(@RequestParam(value = "country", required = false) String alpha3Code) {
-        return responseEntityFactory.createOfList(alpha3Code != null ?
+        Supplier<List<City>> cityListSupplier = (alpha3Code != null) ?
                 () -> repository.findOfCountry(alpha3Code) :
-                repository::findAll);
+                repository::findAll;
+        return responseEntityFactory.createForList(cityListSupplier, DTO_CLASS);
     }
 
     @GetMapping("most-populated")
     public ResponseEntity<CityDTO> mostPopulated(@RequestParam(value = "country", required = false) String alpha3Code) {
-        return responseEntityFactory.create(alpha3Code != null ?
+        Supplier<Optional<City>> citySupplier = (alpha3Code != null) ?
                 () -> repository.findMostPopulatedOfCountry(alpha3Code) :
-                repository::findMostPopulated);
+                repository::findMostPopulated;
+        return responseEntityFactory.create(citySupplier, DTO_CLASS);
     }
 
     @GetMapping("least-populated")
     public ResponseEntity<CityDTO> leastPopulated(@RequestParam(value = "country", required = false) String alpha3Code) {
-        return responseEntityFactory.create(alpha3Code != null ?
+        Supplier<Optional<City>> citySupplier = (alpha3Code != null) ?
                 () -> repository.findLeastPopulatedOfCountry(alpha3Code) :
-                repository::findLeastPopulated);
+                repository::findLeastPopulated;
+        return responseEntityFactory.create(citySupplier, DTO_CLASS);
     }
 }
