@@ -108,9 +108,5 @@ Additional (optional) parameters include:
 - `host` — to specify the DB host (default value: `localhost:3306`)
 - `prettify` — to enable/disable formatting of response JSON (default value: `false`)
 
-## TODO
-- Change group ID and root package name to another domain name to avoid issues with
-  [official Oracle conventions](https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html)
-
 ## License
 This software is distributed under the [Apache 2.0 license](LICENSE).
