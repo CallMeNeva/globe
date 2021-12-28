@@ -38,7 +38,7 @@ public class ContinentStringConverterTests {
     }
 
     @Test
-    public void convertsInvalidColumnValue() {
+    public void throwsOnInvalidColumnValue() {
         Assertions.assertThrows(IllegalStateException.class, () -> CONVERTER.convertToEntityAttribute("Kalimdor"));
     }
 }

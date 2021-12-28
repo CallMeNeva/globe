@@ -37,7 +37,7 @@ public class BooleanCharacterConverterTests {
     }
 
     @Test
-    public void convertsInvalidColumnValue() {
+    public void throwsOnInvalidColumnValue() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> CONVERTER.convertToEntityAttribute('Z'));
     }
 }

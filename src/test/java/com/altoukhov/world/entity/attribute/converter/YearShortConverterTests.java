@@ -27,7 +27,7 @@ public final class YearShortConverterTests {
     private static final YearShortConverter CONVERTER = new YearShortConverter();
 
     @Test
-    public void convertsAttribute() {
+    public void convertsAttributeValue() {
         Year attributeValue = Year.of(1984);
         Assertions.assertEquals((short) 1984, CONVERTER.convertToDatabaseColumn(attributeValue));
     }
