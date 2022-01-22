@@ -109,4 +109,4 @@ Additional (optional) parameters include:
 - `prettify` — to enable/disable formatting of response JSON (default value: `false`)
 
 ## License
-This software is distributed under the [Apache 2.0 license](LICENSE).
+This software is released into the public domain. See [the license file](LICENSE) for more information.
