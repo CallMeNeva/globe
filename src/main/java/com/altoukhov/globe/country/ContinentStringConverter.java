@@ -1,7 +1,5 @@
 package com.altoukhov.globe.country;
 
-import com.altoukhov.globe.country.Continent;
-
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 

@@ -1,6 +1,5 @@
 package com.altoukhov.globe.city;
 
-import com.altoukhov.globe.city.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
