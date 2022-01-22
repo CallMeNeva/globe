@@ -1,4 +1,4 @@
-package com.altoukhov.globe.entity.attribute;
+package com.altoukhov.globe.country;
 
 import java.util.Optional;
 import java.util.stream.Stream;

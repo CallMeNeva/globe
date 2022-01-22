@@ -1,4 +1,4 @@
-package com.altoukhov.globe.api.dto;
+package com.altoukhov.globe.city;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

@@ -1,5 +1,6 @@
-package com.altoukhov.globe.entity.attribute.converter;
+package com.altoukhov.globe.language;
 
+import com.altoukhov.globe.language.BooleanCharacterConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

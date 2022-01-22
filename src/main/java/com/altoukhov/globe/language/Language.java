@@ -1,5 +1,6 @@
-package com.altoukhov.globe.entity;
+package com.altoukhov.globe.language;
 
+import com.altoukhov.globe.country.Country;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

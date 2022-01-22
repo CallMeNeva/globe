@@ -1,6 +1,5 @@
-package com.altoukhov.globe.repository;
+package com.altoukhov.globe.country;
 
-import com.altoukhov.globe.entity.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

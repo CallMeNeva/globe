@@ -1,5 +1,6 @@
-package com.altoukhov.globe.entity.attribute;
+package com.altoukhov.globe.country;
 
+import com.altoukhov.globe.country.Continent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

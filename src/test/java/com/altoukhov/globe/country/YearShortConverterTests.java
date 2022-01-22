@@ -1,5 +1,6 @@
-package com.altoukhov.globe.entity.attribute.converter;
+package com.altoukhov.globe.country;
 
+import com.altoukhov.globe.country.YearShortConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,5 @@
-package com.altoukhov.globe.repository;
+package com.altoukhov.globe.language;
 
-import com.altoukhov.globe.entity.Language;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

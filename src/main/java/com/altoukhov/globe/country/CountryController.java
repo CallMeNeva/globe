@@ -1,9 +1,6 @@
-package com.altoukhov.globe.api;
+package com.altoukhov.globe.country;
 
-import com.altoukhov.globe.api.dto.CountryDTO;
-import com.altoukhov.globe.api.util.ResponseEntityFactory;
-import com.altoukhov.globe.entity.Country;
-import com.altoukhov.globe.repository.CountryRepository;
+import com.altoukhov.globe.ResponseEntityFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

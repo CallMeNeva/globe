@@ -1,5 +1,6 @@
-package com.altoukhov.globe.entity;
+package com.altoukhov.globe.city;
 
+import com.altoukhov.globe.country.Country;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

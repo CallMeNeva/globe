@@ -1,9 +1,6 @@
-package com.altoukhov.globe.api;
+package com.altoukhov.globe.language;
 
-import com.altoukhov.globe.api.dto.LanguageDTO;
-import com.altoukhov.globe.api.util.ResponseEntityFactory;
-import com.altoukhov.globe.entity.Language;
-import com.altoukhov.globe.repository.LanguageRepository;
+import com.altoukhov.globe.ResponseEntityFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

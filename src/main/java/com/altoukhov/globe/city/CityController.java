@@ -1,9 +1,6 @@
-package com.altoukhov.globe.api;
+package com.altoukhov.globe.city;
 
-import com.altoukhov.globe.api.dto.CityDTO;
-import com.altoukhov.globe.api.util.ResponseEntityFactory;
-import com.altoukhov.globe.entity.City;
-import com.altoukhov.globe.repository.CityRepository;
+import com.altoukhov.globe.ResponseEntityFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

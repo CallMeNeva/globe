@@ -1,4 +1,4 @@
-package com.altoukhov.globe.api.util;
+package com.altoukhov.globe;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
