@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: Copyright 2021-2022 Maxim Altoukhov
+// SPDX-License-Identifier: MIT
+
 package com.altoukhov.globe.language;
 
 import javax.persistence.AttributeConverter;

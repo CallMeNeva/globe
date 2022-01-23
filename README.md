@@ -112,4 +112,4 @@ Additional (optional) parameters include:
 - `prettify` — to enable/disable formatting of response JSON (default value: `false`)
 
 ## License
-This software is released into the public domain. See [the license file](LICENSE) for more information.
+This software is distributed under an [MIT license](LICENSE).
