@@ -1,7 +1,6 @@
 ## About
-This project represents a small and extremely simple demo web application that exposes the MySQL
-[World](https://dev.mysql.com/doc/world-setup/en/world-setup-installation.html) sample database via a RESTful API, powered by Spring Boot
-and Java 17.
+**Globe** is an extremely simple (a bit primitive, even) RESTful web API for the MySQL
+[World](https://dev.mysql.com/doc/world-setup/en/world-setup-installation.html) sample database.
 
 ## Usage
 General API notes:
@@ -84,24 +83,28 @@ Response example:
 ```
 
 ## Self-Hosting
-The only tools that are needed to build the project are a JDK of version 17 or higher and an appropriately recent enough version of Maven.
-Once these requirements are met, simply follow these steps:
+Before you can build, make sure your `JAVA_HOME` environment variable points to a JDK 17. Then simply run the Maven wrapper as follows 
+(if you're on a *nix system, you might also need to make the script executable with a `chmod +x`):
 
-1. Clone this repository
-   ```shell
-   git clone https://github.com/altoukhov-max/mysql-world-api.git
-   cd mysql-world-api
-   ```
-2. Build and package the source code as an executable JAR file
-   ```shell
-   mvn package
-   ```
+```shell
+./mvnw package
+```
 
-You should now have an executable JAR located in the generated `target/` directory, e.g. `target/world-api-1.2.0.jar`. To execute it, simply
-run `java -jar target/world-api-1.2.0.jar`.
+or 
+
+```shell
+mvnw.cmd package
+```
+
+if you're on Microsoft Windows.
+
+For more information refer to the [Maven wrapper documentation](https://maven.apache.org/wrapper/).
+
+You should now have an executable JAR located in the generated `target/` directory, such as `target/globe-1.4.0.jar`. To execute it, simply
+run `java -jar target/globe-1.4.0.jar`.
 
 When running the application, DB username and password must be provided. One way to do so is via the `--user` and `--password` CLI
-arguments, i.e. `java -jar target/world-api-1.2.0.jar --user=admin --password=admin`. Another way is to specify these values in the
+arguments, i.e. `java -jar target/globe-1.4.0.jar --user=admin --password=admin`. Another way is to specify these values in the
 `application.properties` file, located in `src/resources/` (a rebuild is required if you choose this option).
 
 Additional (optional) parameters include:
