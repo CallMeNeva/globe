@@ -40,7 +40,7 @@ public class CountryController {
     @GetMapping
     public ResponseEntity<List<CountryDTO>> all(@RequestParam(value = "continent", required = false) String continentName) {
         Supplier<List<Country>> countryListSupplier = (continentName != null) ?
-                () -> repository.findOfContinent(continentName) :
+                () -> repository.findAllOfContinent(continentName) :
                 repository::findAll;
         return responseEntityFactory.createForList(countryListSupplier, DTO_CLASS);
     }

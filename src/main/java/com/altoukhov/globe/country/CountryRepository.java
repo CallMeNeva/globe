@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface CountryRepository extends JpaRepository<Country, String> {
 
     @Query(value = "SELECT * FROM world.country WHERE Continent = ?1", nativeQuery = true)
-    List<Country> findOfContinent(String continentName);
+    List<Country> findAllOfContinent(String continentName);
 
     @Query(value = "SELECT * FROM world.country ORDER BY Population DESC LIMIT 1", nativeQuery = true)
     Optional<Country> findMostPopulated();

@@ -34,7 +34,7 @@ public class CityController {
     @GetMapping
     public ResponseEntity<List<CityDTO>> all(@RequestParam(value = "country", required = false) String alpha3Code) {
         Supplier<List<City>> cityListSupplier = (alpha3Code != null) ?
-                () -> repository.findOfCountry(alpha3Code) :
+                () -> repository.findAllOfCountry(alpha3Code) :
                 repository::findAll;
         return responseEntityFactory.createForList(cityListSupplier, DTO_CLASS);
     }

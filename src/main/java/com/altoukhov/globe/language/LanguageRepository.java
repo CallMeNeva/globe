@@ -14,13 +14,13 @@ import java.util.Optional;
 public interface LanguageRepository extends JpaRepository<Language, Language.PrimaryKey> {
 
     @Query(value = "SELECT * FROM world.countrylanguage WHERE CountryCode = ?1", nativeQuery = true)
-    List<Language> findOfCountry(String alpha3Code);
+    List<Language> findAllOfCountry(String alpha3Code);
 
     @Query(value = "SELECT * FROM world.countrylanguage WHERE CountryCode = ?1 AND IsOfficial = 'T'", nativeQuery = true)
-    List<Language> findOfficialOfCountry(String alpha3Code);
+    List<Language> findAllOfficialOfCountry(String alpha3Code);
 
     @Query(value = "SELECT * FROM world.countrylanguage WHERE CountryCode = ?1 AND IsOfficial = 'F'", nativeQuery = true)
-    List<Language> findUnofficialOfCountry(String alpha3Code);
+    List<Language> findAllUnofficialOfCountry(String alpha3Code);
 
     @Query(value = "SELECT * FROM world.countrylanguage WHERE CountryCode = ?1 ORDER BY Percentage DESC LIMIT 1", nativeQuery = true)
     Optional<Language> findMostPopularOfCountry(String alpha3Code);

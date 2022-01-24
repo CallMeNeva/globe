@@ -33,19 +33,19 @@ public class LanguageController {
     @GetMapping
     public ResponseEntity<List<LanguageDTO>> all(@RequestParam(value = "country", required = false) String alpha3Code) {
         Supplier<List<Language>> languageListSupplier = (alpha3Code != null) ?
-                () -> repository.findOfCountry(alpha3Code) :
+                () -> repository.findAllOfCountry(alpha3Code) :
                 repository::findAll;
         return responseEntityFactory.createForList(languageListSupplier, DTO_CLASS);
     }
 
     @GetMapping("official")
     public ResponseEntity<List<LanguageDTO>> official(@RequestParam("country") String alpha3Code) {
-        return responseEntityFactory.createForList(() -> repository.findOfficialOfCountry(alpha3Code), DTO_CLASS);
+        return responseEntityFactory.createForList(() -> repository.findAllOfficialOfCountry(alpha3Code), DTO_CLASS);
     }
 
     @GetMapping("unofficial")
     public ResponseEntity<List<LanguageDTO>> unofficial(@RequestParam("country") String alpha3Code) {
-        return responseEntityFactory.createForList(() -> repository.findUnofficialOfCountry(alpha3Code), DTO_CLASS);
+        return responseEntityFactory.createForList(() -> repository.findAllUnofficialOfCountry(alpha3Code), DTO_CLASS);
     }
 
     @GetMapping("most-popular")
