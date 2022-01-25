@@ -7,14 +7,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "cities", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/cities", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CityController {
 
     private final CityService service;
@@ -27,22 +27,42 @@ public class CityController {
     }
 
     @GetMapping
-    public List<CityDTO> all(@RequestParam(value = "country", required = false) String alpha3Code) {
-        List<City> cities = (alpha3Code == null) ? service.fetchAll() : service.fetchAll(alpha3Code);
+    public List<CityDTO> allGlobally() {
+        List<City> cities = service.fetchAll();
         return cities.stream()
                 .map(city -> mapper.map(city, CityDTO.class))
                 .toList();
     }
 
-    @GetMapping("most-populated")
-    public CityDTO mostPopulated(@RequestParam(value = "country", required = false) String alpha3Code) {
-        City city = (alpha3Code == null) ? service.fetchMostPopulated() : service.fetchMostPopulated(alpha3Code);
+    @GetMapping(path = "/most-populated")
+    public CityDTO mostPopulatedGlobally() {
+        City city = service.fetchMostPopulated();
         return mapper.map(city, CityDTO.class);
     }
 
-    @GetMapping("least-populated")
-    public CityDTO leastPopulated(@RequestParam(value = "country", required = false) String alpha3Code) {
-        City city = (alpha3Code == null) ? service.fetchLeastPopulated() : service.fetchLeastPopulated(alpha3Code);
+    @GetMapping(path = "/least-populated")
+    public CityDTO leastPopulatedGlobally() {
+        City city = service.fetchLeastPopulated();
+        return mapper.map(city, CityDTO.class);
+    }
+
+    @GetMapping(path = "/{alpha3Code}")
+    public List<CityDTO> allOfCountry(@PathVariable String alpha3Code) {
+        List<City> cities = service.fetchAll(alpha3Code);
+        return cities.stream()
+                .map(city -> mapper.map(city, CityDTO.class))
+                .toList();
+    }
+
+    @GetMapping("/{alpha3Code}/most-populated")
+    public CityDTO mostPopulatedOfCountry(@PathVariable String alpha3Code) {
+        City city = service.fetchMostPopulated(alpha3Code);
+        return mapper.map(city, CityDTO.class);
+    }
+
+    @GetMapping("/{alpha3Code}/least-populated")
+    public CityDTO leastPopulatedOfCountry(@PathVariable String alpha3Code) {
+        City city = service.fetchLeastPopulated(alpha3Code);
         return mapper.map(city, CityDTO.class);
     }
 }
