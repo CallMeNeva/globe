@@ -50,7 +50,7 @@ public class CountryDTO {
     private int populationCount;
 
     @JsonProperty("lifeExpectancy")
-    private Float lifeExpectancy; // See related note in entity decl
+    private Float lifeExpectancy; // See related note in entity declaration
 
     @JsonProperty("GNP")
     private BigDecimal grossNationalProduct;
