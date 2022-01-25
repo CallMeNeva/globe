@@ -3,7 +3,7 @@
 
 package com.altoukhov.globe.country;
 
-import java.util.Optional;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public enum Continent {
@@ -25,10 +25,11 @@ public enum Continent {
         return displayName;
     }
 
-    public static Optional<Continent> of(String name) {
+    public static Continent of(String name) {
         return Stream.of(values())
-                .filter(continent -> continent.getDisplayName().equals(name))
-                .findAny();
+                .filter(continent -> Objects.equals(continent.displayName, name))
+                .findAny()
+                .orElseThrow(() -> new NoSuchContinentException("Continent '" + name + "' does not exist"));
     }
 
     @Override

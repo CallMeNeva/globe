@@ -3,29 +3,25 @@
 
 package com.altoukhov.globe.country;
 
-import com.altoukhov.globe.country.Continent;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
+@DisplayName("Continent Tests")
 public class ContinentTests {
 
     @Test
-    public void presentOnValidName() {
-        Optional<Continent> continent = Continent.of("Europe");
-        Assertions.assertTrue(continent.isPresent());
+    @DisplayName("Continent::of returns an existing continent")
+    public void returnsExistingContinent() {
+        Continent expected = Continent.ASIA;
+        Continent actual = Continent.of("Asia");
+
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void emptyOnInvalidName() {
-        Optional<Continent> continent = Continent.of("Kalimdor");
-        Assertions.assertTrue(continent.isEmpty());
-    }
-
-    @Test
-    public void emptyOnNullName() {
-        Optional<Continent> continent = Continent.of(null);
-        Assertions.assertTrue(continent.isEmpty());
+    @DisplayName("Continent::of throws NoSuchContinentException on invalid name")
+    public void throwsOnNonexistentContinent() {
+        Assertions.assertThrows(NoSuchContinentException.class, () -> Continent.of("Kalimdor"));
     }
 }
