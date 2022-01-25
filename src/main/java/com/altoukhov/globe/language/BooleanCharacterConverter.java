@@ -9,7 +9,7 @@ import javax.persistence.Converter;
 @Converter(autoApply = true)
 public class BooleanCharacterConverter implements AttributeConverter<Boolean, Character> {
 
-    // Column defined as non-nullable; null-checks are not required
+    // Column defined as non-nullable: null-checks are not required
 
     private static final char TRUE_CHAR_VALUE = 'T';
     private static final char FALSE_CHAR_VALUE = 'F';
@@ -20,8 +20,8 @@ public class BooleanCharacterConverter implements AttributeConverter<Boolean, Ch
     }
 
     @Override
-    public Boolean convertToEntityAttribute(Character dbData) {
-        return switch (dbData) {
+    public Boolean convertToEntityAttribute(Character columnValue) {
+        return switch (columnValue) {
             case TRUE_CHAR_VALUE -> Boolean.TRUE;
             case FALSE_CHAR_VALUE -> Boolean.FALSE;
             default -> throw new IllegalArgumentException("Value is not '" + TRUE_CHAR_VALUE + "' or '" + FALSE_CHAR_VALUE + '\'');

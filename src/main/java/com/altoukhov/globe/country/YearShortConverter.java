@@ -18,7 +18,7 @@ public class YearShortConverter implements AttributeConverter<Year, Short> {
     }
 
     @Override
-    public Year convertToEntityAttribute(Short dbData) {
-        return dbData == null ? null : Year.of(dbData);
+    public Year convertToEntityAttribute(Short columnValue) {
+        return columnValue == null ? null : Year.of(columnValue);
     }
 }
