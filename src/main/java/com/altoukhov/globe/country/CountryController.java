@@ -3,77 +3,90 @@
 
 package com.altoukhov.globe.country;
 
-import com.altoukhov.globe.ResponseEntityFactory;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Supplier;
 
 @RestController
-@RequestMapping(value = "countries", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/countries", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CountryController {
 
-    private static final Class<CountryDTO> DTO_CLASS = CountryDTO.class;
-
-    private final CountryRepository repository;
-    private final ResponseEntityFactory responseEntityFactory;
+    private final CountryService service;
+    private final ModelMapper mapper;
 
     @Autowired
-    public CountryController(CountryRepository repository, ResponseEntityFactory responseEntityFactory) {
-        this.repository = repository;
-        this.responseEntityFactory = responseEntityFactory;
-    }
-
-    @GetMapping("{alpha3Code}")
-    public ResponseEntity<CountryDTO> ofAlpha3Code(@PathVariable String alpha3Code) {
-        return responseEntityFactory.create(() -> repository.findById(alpha3Code), DTO_CLASS);
+    public CountryController(CountryService service, ModelMapper mapper) {
+        this.service = service;
+        this.mapper = mapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<CountryDTO>> all(@RequestParam(value = "continent", required = false) String continentName) {
-        Supplier<List<Country>> countryListSupplier = (continentName != null) ?
-                () -> repository.findAllOfContinent(continentName) :
-                repository::findAll;
-        return responseEntityFactory.createForList(countryListSupplier, DTO_CLASS);
+    public List<CountryDTO> allGlobally() {
+        List<Country> countries = service.fetchAll();
+        return countries.stream()
+                .map(country -> mapper.map(country, CountryDTO.class))
+                .toList();
     }
 
-    @GetMapping("most-populated")
-    public ResponseEntity<CountryDTO> mostPopulated(@RequestParam(value = "continent", required = false) String continentName) {
-        Supplier<Optional<Country>> countrySupplier = (continentName != null) ?
-                () -> repository.findMostPopulatedOfContinent(continentName) :
-                repository::findMostPopulated;
-        return responseEntityFactory.create(countrySupplier, DTO_CLASS);
+    @GetMapping(path = "/most-populated")
+    public CountryDTO mostPopulatedGlobally() {
+        Country country = service.fetchMostPopulated();
+        return mapper.map(country, CountryDTO.class);
     }
 
-    @GetMapping("least-populated")
-    public ResponseEntity<CountryDTO> leastPopulated(@RequestParam(value = "continent", required = false) String continentName) {
-        Supplier<Optional<Country>> countrySupplier = (continentName != null) ?
-                () -> repository.findLeastPopulatedOfContinent(continentName) :
-                repository::findLeastPopulated;
-        return responseEntityFactory.create(countrySupplier, DTO_CLASS);
+    @GetMapping(path = "/least-populated")
+    public CountryDTO leastPopulatedGlobally() {
+        Country country = service.fetchLeastPopulated();
+        return mapper.map(country, CountryDTO.class);
     }
 
-    @GetMapping("largest")
-    public ResponseEntity<CountryDTO> largest(@RequestParam(value = "continent", required = false) String continentName) {
-        Supplier<Optional<Country>> countrySupplier = (continentName != null) ?
-                () -> repository.findLargestOfContinent(continentName) :
-                repository::findLargest;
-        return responseEntityFactory.create(countrySupplier, DTO_CLASS);
+    @GetMapping(path = "/largest")
+    public CountryDTO largestGlobally() {
+        Country country = service.fetchLargest();
+        return mapper.map(country, CountryDTO.class);
     }
 
-    @GetMapping("smallest")
-    public ResponseEntity<CountryDTO> smallest(@RequestParam(value = "continent", required = false) String continentName) {
-        Supplier<Optional<Country>> countrySupplier = (continentName != null) ?
-                () -> repository.findSmallestOfContinent(continentName) :
-                repository::findSmallest;
-        return responseEntityFactory.create(countrySupplier, DTO_CLASS);
+    @GetMapping(path = "/smallest")
+    public CountryDTO smallestGlobally() {
+        Country country = service.fetchSmallest();
+        return mapper.map(country, CountryDTO.class);
+    }
+
+    @GetMapping(path = "/{continentName}")
+    public List<CountryDTO> allOfContinent(@PathVariable String continentName) {
+        List<Country> countries = service.fetchAll(continentName);
+        return countries.stream()
+                .map(country -> mapper.map(country, CountryDTO.class))
+                .toList();
+    }
+
+    @GetMapping(path = "/{continentName}/most-populated")
+    public CountryDTO mostPopulatedOfContinent(@PathVariable String continentName) {
+        Country country = service.fetchMostPopulated(continentName);
+        return mapper.map(country, CountryDTO.class);
+    }
+
+    @GetMapping(path = "/{continentName}/least-populated")
+    public CountryDTO leastPopulatedOfContinent(@PathVariable String continentName) {
+        Country country = service.fetchLeastPopulated(continentName);
+        return mapper.map(country, CountryDTO.class);
+    }
+
+    @GetMapping(path = "/{continentName}/largest")
+    public CountryDTO largestOfContinent(@PathVariable String continentName) {
+        Country country = service.fetchLargest(continentName);
+        return mapper.map(country, CountryDTO.class);
+    }
+
+    @GetMapping(path = "/{continentName}/smallest")
+    public CountryDTO smallestOfContinent(@PathVariable String continentName) {
+        Country country = service.fetchSmallest(continentName);
+        return mapper.map(country, CountryDTO.class);
     }
 }
