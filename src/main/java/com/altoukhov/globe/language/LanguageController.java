@@ -3,6 +3,7 @@
 
 package com.altoukhov.globe.language;
 
+import com.altoukhov.globe.ModelMapperUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,33 +30,25 @@ public class LanguageController {
     @GetMapping
     public List<LanguageDTO> allGlobally() {
         List<Language> languages = service.fetchAll();
-        return languages.stream()
-                .map(language -> mapper.map(language, LanguageDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, languages, LanguageDTO.class);
     }
 
     @GetMapping(path = "/{alpha3Code}")
     public List<LanguageDTO> allOfCountry(@PathVariable String alpha3Code) {
         List<Language> languages = service.fetchAll(alpha3Code);
-        return languages.stream()
-                .map(language -> mapper.map(language, LanguageDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, languages, LanguageDTO.class);
     }
 
     @GetMapping(path = "/{alpha3Code}/official")
     public List<LanguageDTO> allOfficialOfCountry(@PathVariable String alpha3Code) {
         List<Language> languages = service.fetchAllOfficial(alpha3Code);
-        return languages.stream()
-                .map(language -> mapper.map(language, LanguageDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, languages, LanguageDTO.class);
     }
 
     @GetMapping(path = "/{alpha3Code}/unofficial")
     public List<LanguageDTO> allUnofficialOfCountry(@PathVariable String alpha3Code) {
         List<Language> languages = service.fetchAllUnofficial(alpha3Code);
-        return languages.stream()
-                .map(language -> mapper.map(language, LanguageDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, languages, LanguageDTO.class);
     }
 
     @GetMapping(path = "/{alpha3Code}/most-popular")

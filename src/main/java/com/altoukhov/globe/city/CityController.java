@@ -3,6 +3,7 @@
 
 package com.altoukhov.globe.city;
 
+import com.altoukhov.globe.ModelMapperUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,9 +30,7 @@ public class CityController {
     @GetMapping
     public List<CityDTO> allGlobally() {
         List<City> cities = service.fetchAll();
-        return cities.stream()
-                .map(city -> mapper.map(city, CityDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, cities, CityDTO.class);
     }
 
     @GetMapping(path = "/most-populated")
@@ -49,9 +48,7 @@ public class CityController {
     @GetMapping(path = "/{alpha3Code}")
     public List<CityDTO> allOfCountry(@PathVariable String alpha3Code) {
         List<City> cities = service.fetchAll(alpha3Code);
-        return cities.stream()
-                .map(city -> mapper.map(city, CityDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, cities, CityDTO.class);
     }
 
     @GetMapping("/{alpha3Code}/most-populated")

@@ -3,6 +3,7 @@
 
 package com.altoukhov.globe.country;
 
+import com.altoukhov.globe.ModelMapperUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,9 +30,7 @@ public class CountryController {
     @GetMapping
     public List<CountryDTO> allGlobally() {
         List<Country> countries = service.fetchAll();
-        return countries.stream()
-                .map(country -> mapper.map(country, CountryDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, countries, CountryDTO.class);
     }
 
     @GetMapping(path = "/most-populated")
@@ -61,9 +60,7 @@ public class CountryController {
     @GetMapping(path = "/{continentName}")
     public List<CountryDTO> allOfContinent(@PathVariable String continentName) {
         List<Country> countries = service.fetchAll(continentName);
-        return countries.stream()
-                .map(country -> mapper.map(country, CountryDTO.class))
-                .toList();
+        return ModelMapperUtils.mapAll(mapper, countries, CountryDTO.class);
     }
 
     @GetMapping(path = "/{continentName}/most-populated")
