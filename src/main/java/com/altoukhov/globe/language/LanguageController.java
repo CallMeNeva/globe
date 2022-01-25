@@ -3,58 +3,70 @@
 
 package com.altoukhov.globe.language;
 
-import com.altoukhov.globe.ResponseEntityFactory;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 @RestController
-@RequestMapping(value = "languages", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/languages", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LanguageController {
 
-    private static final Class<LanguageDTO> DTO_CLASS = LanguageDTO.class;
-
-    private final LanguageRepository repository;
-    private final ResponseEntityFactory responseEntityFactory;
+    private final LanguageService service;
+    private final ModelMapper mapper;
 
     @Autowired
-    public LanguageController(LanguageRepository repository, ResponseEntityFactory responseEntityFactory) {
-        this.repository = repository;
-        this.responseEntityFactory = responseEntityFactory;
+    public LanguageController(LanguageService service, ModelMapper mapper) {
+        this.service = service;
+        this.mapper = mapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<LanguageDTO>> all(@RequestParam(value = "country", required = false) String alpha3Code) {
-        Supplier<List<Language>> languageListSupplier = (alpha3Code != null) ?
-                () -> repository.findAllOfCountry(alpha3Code) :
-                repository::findAll;
-        return responseEntityFactory.createForList(languageListSupplier, DTO_CLASS);
+    public List<LanguageDTO> allGlobally() {
+        List<Language> languages = service.fetchAll();
+        return languages.stream()
+                .map(language -> mapper.map(language, LanguageDTO.class))
+                .toList();
     }
 
-    @GetMapping("official")
-    public ResponseEntity<List<LanguageDTO>> official(@RequestParam("country") String alpha3Code) {
-        return responseEntityFactory.createForList(() -> repository.findAllOfficialOfCountry(alpha3Code), DTO_CLASS);
+    @GetMapping(path = "/{alpha3Code}")
+    public List<LanguageDTO> allOfCountry(@PathVariable String alpha3Code) {
+        List<Language> languages = service.fetchAll(alpha3Code);
+        return languages.stream()
+                .map(language -> mapper.map(language, LanguageDTO.class))
+                .toList();
     }
 
-    @GetMapping("unofficial")
-    public ResponseEntity<List<LanguageDTO>> unofficial(@RequestParam("country") String alpha3Code) {
-        return responseEntityFactory.createForList(() -> repository.findAllUnofficialOfCountry(alpha3Code), DTO_CLASS);
+    @GetMapping(path = "/{alpha3Code}/official")
+    public List<LanguageDTO> allOfficialOfCountry(@PathVariable String alpha3Code) {
+        List<Language> languages = service.fetchAllOfficial(alpha3Code);
+        return languages.stream()
+                .map(language -> mapper.map(language, LanguageDTO.class))
+                .toList();
     }
 
-    @GetMapping("most-popular")
-    public ResponseEntity<LanguageDTO> mostPopular(@RequestParam("country") String alpha3Code) {
-        return responseEntityFactory.create(() -> repository.findMostPopularOfCountry(alpha3Code), DTO_CLASS);
+    @GetMapping(path = "/{alpha3Code}/unofficial")
+    public List<LanguageDTO> allUnofficialOfCountry(@PathVariable String alpha3Code) {
+        List<Language> languages = service.fetchAllUnofficial(alpha3Code);
+        return languages.stream()
+                .map(language -> mapper.map(language, LanguageDTO.class))
+                .toList();
     }
 
-    @GetMapping("least-popular")
-    public ResponseEntity<LanguageDTO> leastPopular(@RequestParam("country") String alpha3Code) {
-        return responseEntityFactory.create(() -> repository.findLeastPopularOfCountry(alpha3Code), DTO_CLASS);
+    @GetMapping(path = "/{alpha3Code}/most-popular")
+    public LanguageDTO mostPopularOfCountry(@PathVariable String alpha3Code) {
+        Language language = service.fetchMostPopular(alpha3Code);
+        return mapper.map(language, LanguageDTO.class);
+    }
+
+    @GetMapping(path = "/{alpha3Code}/least-popular")
+    public LanguageDTO leastPopularOfCountry(@PathVariable String alpha3Code) {
+        Language language = service.fetchLeastPopular(alpha3Code);
+        return mapper.map(language, LanguageDTO.class);
     }
 }
