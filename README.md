@@ -1,20 +1,22 @@
 ## About
-**Globe** is an extremely simple (a bit primitive, even) RESTful web API for the MySQL
+**Globe** is an extremely simple semi-RESTful web API for the MySQL
 [World](https://dev.mysql.com/doc/world-setup/en/world-setup-installation.html) sample database.
 
 ## Usage
 General API notes:
-* All requests for a specific entity return `OK` (with a body) if one was found and an empty `Not Found` otherwise;
-* All requests for a list of entities return `OK` with a valid body - if no entities were found, the body is simply an empty list;
-* Any other types of responses are provided by the underlying framework and should not be depended upon by the client;
-* Due to the project's simplicity, there is currently no pagination functionality implemented. This means that large responses will go
-  through as-is, e.g. `GET /cities` will quite literally return all the cities present in the database in one response.
+* Most response status codes are not explicitly defined and are provided by the underlying framework
+* If a requested list of items was not found, an empty list is returned instead of a `404`
+* Due to the project's simplicity, pagination is currently not implemented. This means that large responses will go through as-is, i.e.
+  `GET /cities` (for instance) will quite literally return all the cities present in the database in one big response
 
 ### Cities
-* `GET /cities` returns all recorded cities. The `country` parameter can be used to filter out cities of a specific country, where valid
-  values are [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country codes, e.g. `GET /cities?country=FRA`;
-* `GET /cities/most-populated` and `GET /cities/least-populated` return the most and least populated cities (globally) respectively. The
-  `country` parameter can be used to narrow down the scope to a specific country.
+* `GET /cities` returns all cities that exist in the world
+* `GET /cities/most-populated` returns the most populated city in the world
+* `GET /cities/least-populated` returns the least populated city in the world
+* `GET /cities/$(ALPHA_3)` returns all cities of the specified country, where `$(ALPHA_3)` is the country's
+  [ISO 3166-1 alpha-3](https://www.iso.org/iso-3166-country-codes.html) code (e.g. `GET /cities/FIN`)
+* `GET /cities/$(ALPHA_3)/most-populated` returns the most populated city in the specified country
+* `GET /cities/$(ALPHA_3)/least-populated` returns the least populated city in the specified country
 
 Response example:
 ```json
@@ -27,14 +29,18 @@ Response example:
 ```
 
 ### Countries
-* `GET /countries` returns all recorded countries. The `continent` parameter can be used to filter out countries of a specific continent,
-  where valid values are: `Asia`, `Europe`, `North America`, `Africa`, `Oceania`, `Antarctica` and `South America` (all case-sensitive),
-  e.g. `GET /countries?continent=Europe`;
-* `GET /countries/{ALPHA_3}` returns a country of the specified alpha-3 code, e.g. `GET /countries/FRA`;
-* `GET /countries/most-populated` and `GET /countries/least-populated` return the most and least populated countries (globally)
-  respectively. The `continent` parameter can be used to narrow down the scope to a specific continent;
-* `GET /countries/largest` and `GET /countries/smallest` return the countries with the largest and smallest surface area (globally)
-  respectively. The `continent` parameter can be used to narrow down the scope to a specific continent.
+* `GET /countries` returns all countries that exist in the world
+* `GET /countries/most-populated` returns the most populated country in the world
+* `GET /countries/least-populated` returns the least populated country in the world
+* `GET /countries/largest` returns the largest (in terms of surface area) country in the world
+* `GET /countries/smallest` returns the smallest (in terms of surface area) country in the world
+* `GET /countries/$(CONTINENT_NAME)` returns all countries of the specified continent, where `$(CONTINENT_NAME)` is one of the following
+  values (case-sensitive): `Asia`, `Europe`, `North America`, `South America`, `Africa`, `Oceania` and `Antarctica` (e.g.
+  `GET /countries/Europe`)
+* `GET /countries/$(CONTINENT_NAME)/most-populated` returns the most populated country on the specified continent
+* `GET /countries/$(CONTINENT_NAME)/least-populated` returns the least populated country on the specified continent
+* `GET /countries/$(CONTINENT_NAME)/largest` returns the largest (in terms of surface area) country on the specified continent
+* `GET /countries/$(CONTINENT_NAME)/smallest` returns the smallest (in terms of surface area) country on the specified continent
 
 Response example:
 ```json
@@ -57,12 +63,12 @@ Response example:
 ```
 
 ### Languages
-* `GET /languages` returns all recorded languages. The `country` parameter can be used to filter out languages of a specific country, where
-  valid values are alpha-3 country codes;
-* `GET /languages/official?country={ALPHA_3}` and `GET /languages/unofficial?country={ALPHA_3}` return all official and unofficial languages
-  of the specified country respectively (parameter is required);
-* `GET /languages/most-popular?country={ALPHA_3}` and `GET /languages/least-popular?country={ALPHA_3}` return the most and least popular
-  languages of the specified country respectively (parameter is required).
+* `GET /languages` returns all languages that exist in the world
+* `GET /languages/$(ALPHA_3)` returns all languages spoken in the specified country
+* `GET /languages/$(ALPHA_3)/official` returns all official languages of the specified country
+* `GET /languages/$(ALPHA_3)/unofficial` returns all unofficial languages of the specified country
+* `GET /languages/$(ALPHA_3)/most-popular` returns the most popular language in the specified country
+* `GET /languages/$(ALPHA_3)/least-popular` returns the least popular language in the specified country
 
 Response example:
 ```json
@@ -108,8 +114,8 @@ arguments, i.e. `java -jar target/globe-1.4.0.jar --user=admin --password=admin`
 `application.properties` file, located in `src/resources/` (a rebuild is required if you choose this option).
 
 Additional (optional) parameters include:
-- `host` — to specify the DB host (default value: `localhost:3306`)
-- `prettify` — to enable/disable formatting of response JSON (default value: `false`)
+* `host` — to specify the DB host (default value: `localhost:3306`)
+* `prettify` — to enable/disable formatting of response JSON (default value: `false`)
 
 ## License
 This software is distributed under an [MIT license](LICENSE).
