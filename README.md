@@ -89,7 +89,7 @@ Response example:
 ```
 
 ## Self-Hosting
-Before you can build, make sure your `JAVA_HOME` environment variable points to a JDK 17. Then simply run the Maven wrapper as follows 
+Before you can build, make sure your `JAVA_HOME` environment variable points to a JDK v17. Then simply run the Maven wrapper as follows 
 (if you're on a *nix system, you might also need to make the script executable with a `chmod +x`):
 
 ```shell
