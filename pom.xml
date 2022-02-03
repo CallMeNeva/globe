@@ -9,7 +9,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.altoukhov</groupId>
+    <groupId>io.github.callmeneva</groupId>
     <artifactId>globe</artifactId>
     <version>1.4.0</version>
     <packaging>jar</packaging>
