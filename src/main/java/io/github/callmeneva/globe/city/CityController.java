@@ -51,13 +51,13 @@ public class CityController {
         return ModelMapperUtils.mapAll(mapper, cities, CityDTO.class);
     }
 
-    @GetMapping("/{alpha3Code}/most-populated")
+    @GetMapping(path = "/{alpha3Code}/most-populated")
     public CityDTO mostPopulatedOfCountry(@PathVariable String alpha3Code) {
         City city = service.fetchMostPopulated(alpha3Code);
         return mapper.map(city, CityDTO.class);
     }
 
-    @GetMapping("/{alpha3Code}/least-populated")
+    @GetMapping(path = "/{alpha3Code}/least-populated")
     public CityDTO leastPopulatedOfCountry(@PathVariable String alpha3Code) {
         City city = service.fetchLeastPopulated(alpha3Code);
         return mapper.map(city, CityDTO.class);

@@ -13,15 +13,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class LanguageDTO {
 
-    @JsonProperty("name")
+    @JsonProperty(value = "name")
     private String name;
 
-    @JsonProperty("country")
+    @JsonProperty(value = "country")
     private String countryName;
 
-    @JsonProperty("official")
+    @JsonProperty(value = "official")
     private boolean official;
 
-    @JsonProperty("percentage")
+    @JsonProperty(value = "percentage")
     private float percentage;
 }

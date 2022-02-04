@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Continent Tests")
-public class ContinentTests {
+class ContinentTests {
 
     @Test
     @DisplayName("Continent::of returns an existing continent")

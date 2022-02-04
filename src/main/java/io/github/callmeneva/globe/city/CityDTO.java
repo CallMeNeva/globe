@@ -13,15 +13,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CityDTO {
 
-    @JsonProperty("name")
+    @JsonProperty(value = "name")
     private String name;
 
-    @JsonProperty("country")
+    @JsonProperty(value = "country")
     private String countryName;
 
-    @JsonProperty("district")
+    @JsonProperty(value = "district")
     private String districtName;
 
-    @JsonProperty("population")
+    @JsonProperty(value = "population")
     private int populationCount;
 }

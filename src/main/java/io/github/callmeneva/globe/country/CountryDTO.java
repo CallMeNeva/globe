@@ -16,45 +16,45 @@ import java.time.Year;
 @NoArgsConstructor
 public class CountryDTO {
 
-    @JsonProperty("name")
+    @JsonProperty(value = "name")
     private String name;
 
-    @JsonProperty("localName")
+    @JsonProperty(value = "localName")
     private String localName;
 
-    @JsonProperty("alpha2")
+    @JsonProperty(value = "alpha2")
     private String alpha2Code;
 
-    @JsonProperty("capital")
+    @JsonProperty(value = "capital")
     private String capitalName;
 
-    @JsonProperty("continent")
+    @JsonProperty(value = "continent")
     private String continentDisplayName;
 
-    @JsonProperty("region")
+    @JsonProperty(value = "region")
     private String regionName;
 
-    @JsonProperty("surfaceArea")
+    @JsonProperty(value = "surfaceArea")
     private BigDecimal surfaceArea;
 
-    @JsonProperty("governmentForm")
+    @JsonProperty(value = "governmentForm")
     private String governmentFormName;
 
-    @JsonProperty("headOfState")
+    @JsonProperty(value = "headOfState")
     private String headOfStateName;
 
-    @JsonProperty("independenceYear")
+    @JsonProperty(value = "independenceYear")
     private Year independenceYear;
 
-    @JsonProperty("population")
+    @JsonProperty(value = "population")
     private int populationCount;
 
-    @JsonProperty("lifeExpectancy")
+    @JsonProperty(value = "lifeExpectancy")
     private Float lifeExpectancy; // See related note in entity declaration
 
-    @JsonProperty("GNP")
+    @JsonProperty(value = "GNP")
     private BigDecimal grossNationalProduct;
 
-    @JsonProperty("oldGNP")
+    @JsonProperty(value = "oldGNP")
     private BigDecimal oldGrossNationalProduct;
 }
