@@ -1,6 +1,3 @@
-// SPDX-FileCopyrightText: Copyright 2022 Maxim Altoukhov
-// SPDX-License-Identifier: MIT
-
 package io.github.callmeneva.globe.language;
 
 import org.springframework.beans.factory.annotation.Autowired;
