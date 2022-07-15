@@ -116,6 +116,3 @@ arguments, i.e. `java -jar target/globe-1.4.0.jar --user=admin --password=admin`
 Additional (optional) parameters include:
 * `host` — to specify the DB host (default value: `localhost:3306`)
 * `prettify` — to enable/disable formatting of response JSON (default value: `false`)
-
-## License
-This software is distributed under an [MIT license](LICENSE).
