@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
 
     <name>Globe</name>
-    <description>Web API for the MySQL "World" sample database</description>
+    <description>Archived world data web API</description>
     <inceptionYear>2021</inceptionYear>
 
     <parent>
